@@ -1,3 +1,25 @@
+### 저장소 경로 설명
+```
+src/
+├── App.js                 # 메인 앱 컴포넌트
+├── App.test.js            # App 컴포넌트에 대한 테스트
+├── index.js               # React 앱의 진입점
+├── reportWebVitals.js     # 웹 성능 측정
+├── setupTests.js          # Jest 테스트 설정
+├── assets/                # 이미지와 스타일 같은 자료
+│   ├── images/
+│   │   └── logo.svg       # 로고 이미지
+│   └── styles/
+│       ├── App.css        # App 컴포넌트의 CSS
+│       └── global.css     # 글로벌 CSS
+├── components/            # 재사용 가능한 컴포넌트
+├── containers/            # 컨테이너 컴포넌트
+├── pages/                 # 페이지 컴포넌트
+├── hooks/                 # 커스텀 훅
+├── services/              # API 서비스 호출
+├── utils/                 # 유틸리티 함수
+└── store/                 # 상태 관리 (예: Redux)
+```
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,26 +90,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-### 저장소 경로 설명
-```
-src/
-├── App.js                 # 메인 앱 컴포넌트
-├── App.test.js            # App 컴포넌트에 대한 테스트
-├── index.js               # React 앱의 진입점
-├── reportWebVitals.js     # 웹 성능 측정
-├── setupTests.js          # Jest 테스트 설정
-├── assets/                # 이미지와 스타일 같은 자료
-│   ├── images/
-│   │   └── logo.svg       # 로고 이미지
-│   └── styles/
-│       ├── App.css        # App 컴포넌트의 CSS
-│       └── global.css     # 글로벌 CSS
-├── components/            # 재사용 가능한 컴포넌트
-├── containers/            # 컨테이너 컴포넌트
-├── pages/                 # 페이지 컴포넌트
-├── hooks/                 # 커스텀 훅
-├── services/              # API 서비스 호출
-├── utils/                 # 유틸리티 함수
-└── store/                 # 상태 관리 (예: Redux)
-```
