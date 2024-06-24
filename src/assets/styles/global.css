@@ -1,0 +1,14 @@
+/* 전역 CSS */
+body {
+  margin: 0; /* 기본 여백을 제거합니다 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; /* 여러 시스템 글꼴을 지정합니다 */
+  -webkit-font-smoothing: antialiased; /* 글꼴을 부드럽게 렌더링합니다 (웹킷) */
+  -moz-osx-font-smoothing: grayscale; /* 글꼴을 부드럽게 렌더링합니다 (모질라) */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace; /* 코드를 위한 글꼴을 지정합니다 */
+}
