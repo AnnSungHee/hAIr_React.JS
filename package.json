@@ -39,8 +39,19 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.7",
     "@babel/preset-react": "^7.24.7",
     "babel-jest": "^29.7.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!axios)"
+    ],
+    "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
+    "testEnvironment": "jsdom"
   }
 }
