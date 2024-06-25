@@ -1,11 +1,30 @@
-import { render, screen } from '@testing-library/react'; // 테스트 라이브러리에서 필요한 모듈을 import 합니다.
-import { act } from 'react';
-import App from './App'; // App 컴포넌트를 import 합니다.
+import React from 'react';
+import { render, screen, act } from '@testing-library/react'; // act를 명시적으로 가져오기
+import { MemoryRouter } from 'react-router-dom';
+import App from './App';
 
-test('renders learn react link', () => { // 'learn react' 링크가 렌더링 되는지 테스트합니다.
-  act(() => {
-    render(<App />); // App 컴포넌트를 렌더링 합니다.
-  }
-  const linkElement = screen.getByText(/learn react/i); // 'learn react' 텍스트를 가진 엘리먼트를 찾습니다.
-  expect(linkElement).toBeInTheDocument(); // 해당 엘리먼트가 문서에 존재하는지 확인합니다.
+test('renders HomePage component for the default route', () => {
+  act(() => { // act로 감싸기
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>
+    );
+  });
+  expect(screen.getByText(/welcome to the react app/i)).toBeInTheDocument();
+  expect(screen.getByText(/go to form/i)).toBeInTheDocument();
+});
+
+test('renders FormPage component for the /form route', () => {
+  act(() => { // act로 감싸기
+    render(
+      <MemoryRouter initialEntries={['/form']}>
+        <App />
+      </MemoryRouter>
+    );
+  });
+  expect(screen.getByText(/submit your data/i)).toBeInTheDocument();
+
+  const submitButtons = screen.getAllByText(/submit/i);
+  expect(submitButtons.length).toBeGreaterThan(0);
 });
