@@ -1,0 +1,53 @@
+# Workflow의 이름
+name: CI for hAIr React.js Project
+
+# Workflow의 실행 조건
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+# Workflow가 실행할 작업
+jobs:
+  # 실행할 작업의 이름
+  build-and-test:
+    # 작업이 실행되는 환경
+    runs-on: ubuntu-latest
+
+    # 작업의 수행 단계
+    steps:
+      # 수행 단계의 이름 및 사용 도구
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build the project
+        run: npm run build
+
+      # Slack으로 알림 보내기
+      - name: Notify Slack
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          STATUS="unknown"
+          if [ ${{ job.status }} == 'success' ]; then
+            STATUS="passed"
+          else
+            STATUS="failed"
+          fi
+          curl -X POST -H 'Content-type: application/json' --data "{
+            \"text\": \"CI build $STATUS for ${{ github.repository }} in the ${{ github.ref }} branch.\"
+          }" $SLACK_WEBHOOK_URL
