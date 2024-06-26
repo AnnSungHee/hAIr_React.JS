@@ -3,7 +3,7 @@ name: Sync Fork
 
 on:
   schedule:
-    - cron: '0 * * * *' # 매일 자정에 실행 (UTC 기준)
+    - cron: '0 * * * *' # 매정각 에 실행 (UTC 기준)
   workflow_dispatch: # 수동으로 실행 가능
 
 jobs:
