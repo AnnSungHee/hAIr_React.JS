@@ -27,7 +27,6 @@ const HomePage = () => {
             <p>분석한 얼굴형을 토대로 맞춤스타일 추천</p>
           </span>
         </section>
-
         <section className="styleRecommend">
           <h1>맞춤 헤어스타일 추천</h1>
           <span>
@@ -37,7 +36,6 @@ const HomePage = () => {
           </span>
           <div><img className="skelImg" src="/skel.png" alt="맞춤 헤어스타일 추천 사진" /></div>
         </section>
-
       </section>
     </>
   );
