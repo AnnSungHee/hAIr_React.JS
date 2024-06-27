@@ -1,0 +1,122 @@
+
+#mainBanner{
+    position: relative;
+
+    margin-top: 48px;
+}
+
+    .bannerImg {
+        width: 100%;
+        height: 520px;
+    }
+
+.links{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .chatlink{
+        display: inline-block;
+        padding: 12px;
+        padding-left: 40px;
+        padding-right: 40px;
+        margin-bottom: 20px;
+        
+        border-radius: 8px;
+
+        background-color: #2752E7;
+
+        color: #FFFFFF;
+
+        text-decoration: none;
+    }
+
+    .links>p{
+        color: #808080;
+    }
+
+
+/* 홈페이지 소개 부분 */
+
+#serviceIntro{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-top: 80px;
+}
+
+    .faceAnalyze{
+        display: flex;
+    }
+
+        .skelImg{
+            width: 350px;
+            height: 350px;
+        }
+
+
+        .faceAnalyze div{
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+            .faceAnalyze>span{
+                font-size: 20px;
+            }
+
+
+        .faceAnalyze span{
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+
+            margin-left: 40px;
+        }
+
+            .faceAnalyze span>p{
+                margin-top: 52px;
+            }
+
+
+
+    .styleRecommend{
+        display: flex;
+
+        text-align: end;
+
+        margin-top: 45px;
+    }
+
+
+        .styleRecommend div{
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+            .styleRecommend>span{
+                font-size: 20px;
+            }
+
+
+        .styleRecommend span{
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+
+            margin-right: 40px;
+        }
+
+            .styleRecommend span>p{
+                margin-top: 52px;
+            }
