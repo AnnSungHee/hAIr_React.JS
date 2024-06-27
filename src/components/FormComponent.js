@@ -6,7 +6,7 @@ const FormComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8080/api/endpoint', { data })
+    axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/endpoint`, { data })
       .then(response => {
         console.log(response.data);
       })
