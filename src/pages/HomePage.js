@@ -12,7 +12,7 @@ const HomePage = () => {
         <div><img className="bannerImg" src="/main-banner.png" alt="메인 배너 이미지" /></div>
         <span className='links'>
           <div><Link className='chatlink' to="/chat">채팅하기</Link></div>
-          <p>아직 계정이 없다면 <a href="">회원가입</a>하러가기</p>
+          <p>아직 계정이 없다면 <Link to="/chat">회원가입</Link>하러가기</p>
         </span>
       </div>
 
