@@ -20,6 +20,12 @@ src/
 ├── utils/                 # 유틸리티 함수
 └── store/                 # 상태 관리 (예: Redux)
 ```
+
+- 파일명 규칙 : 파일명 + 폴더명(뒤에 붙은 's' 빼기)
+- ex > HomePage.js의 css파일을 styles 폴더에 저장할 경우, 
+- 파일명인 HomePage와 폴더명에서 's'를 뺀 style을 합쳐, 
+- HomPageStyle.css로 이름을 지으면 됩니다.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
