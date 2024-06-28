@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/styles/HomePageStyle.css';
+import '../assets/styles/pages/HomePageStyle.css';
 import HeaderComponent from '../components/HeaderComponent';
 
 const HomePage = () => {
@@ -9,7 +9,7 @@ const HomePage = () => {
       <HeaderComponent />
 
       <div id='mainBanner'>
-        <div><img className="bannerImg" src="/main-banner.png" alt="메인 배너 이미지" /></div>
+        <div><img className="bannerImg" src="/images/pages/HomePage/main-banner.png" alt="메인 배너 이미지" /></div>
         <span className='links'>
           <div><Link className='chatlink' to="/chat">채팅하기</Link></div>
           <p>아직 계정이 없다면 <Link to="/chat">회원가입</Link>하러가기</p>
@@ -20,7 +20,7 @@ const HomePage = () => {
         <h1>서비스 소개</h1>
         <section className="faceAnalyze">
           <h1>얼굴형 분석</h1>
-          <div><img className="skelImg" src="/skel.png" alt="얼굴형 분석 사진" /></div>
+          <div><img className="skelImg" src="/images/pages/HomePage/skel.png" alt="얼굴형 분석 사진" /></div>
           <span>
             <div>얼굴형 분석</div>
             <p>무엇을 어떻게 활용한 내 얼굴형 분석</p>
@@ -34,7 +34,7 @@ const HomePage = () => {
             <p>무엇을 어떻게 활용한 내 얼굴형 분석</p>
             <p>분석한 얼굴형을 토대로 맞춤스타일 추천</p>
           </span>
-          <div><img className="skelImg" src="/skel.png" alt="맞춤 헤어스타일 추천 사진" /></div>
+          <div><img className="skelImg" src="/images/pages/HomePage/skel.png" alt="맞춤 헤어스타일 추천 사진" /></div>
         </section>
       </section>
     </>

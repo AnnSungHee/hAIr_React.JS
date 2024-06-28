@@ -1,0 +1,28 @@
+.userImgBox{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    max-width: 1116px;
+
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+
+    position: relative;
+}
+
+    .userImgBox>span{
+        position: absolute;
+        top: 20px;
+        right: 12px;
+    }
+
+    .userImgBox>span>button{
+        margin-left: 12px;
+    }
+
+    .userImgBox>button{
+        margin-top: 12px;
+    }
