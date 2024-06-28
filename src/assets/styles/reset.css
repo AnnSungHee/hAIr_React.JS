@@ -1,27 +1,7 @@
-/* 전역 CSS */
-body {
-  margin: 0; /* 기본 여백을 제거합니다 */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; /* 여러 시스템 글꼴을 지정합니다 */
-  -webkit-font-smoothing: antialiased; /* 글꼴을 부드럽게 렌더링합니다 (웹킷) */
-  -moz-osx-font-smoothing: grayscale; /* 글꼴을 부드럽게 렌더링합니다 (모질라) */
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace; /* 코드를 위한 글꼴을 지정합니다 */
-}
-
-
-
-
-
-/* ///////////////////////////////////////////////////////// */
-
-
-/* reset.css */
-/* 태그들의 기본적인 스타일을 지우는 코드입니다 */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -65,13 +45,4 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}
-
-
-/* ///////////////////////////////////////////////////////// */
-
-
-/* html의 배경색을 정하는 코드입니다. */
-html{
-	background-color: #F2F7FA;
 }
