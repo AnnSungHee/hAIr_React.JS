@@ -1,6 +1,7 @@
 import React from 'react';
+// import '../assets/styles/components/HairstyleListComponentStyle.css';
 
-const hairstyleListComponent = ({ hairstyleData }) => {
+const HairstyleListComponent = ({ hairstyleData }) => {
   return (
     <div>
       {hairstyleData.map((style, index) => (
@@ -13,4 +14,4 @@ const hairstyleListComponent = ({ hairstyleData }) => {
   );
 };
 
-export default hairstyleListComponent;
+export default HairstyleListComponent;

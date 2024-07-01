@@ -5,7 +5,9 @@ import '../assets/styles/pages/AiHairstylePageStyle.css';
 import HeaderComponent from '../components/HeaderComponent';
 import UserImageComponent from '../components/UserImageComponent';
 import WebCamModalComponent from '../components/WebCamModalComponent';
-import hairstyleListComponent from '../components/hairstyleListComponent';
+import HairstyleListComponent from '../components/HairstyleListComponent';
+
+
 
 const AiHairstylePage = () => {
   const [capturedImage, setCapturedImage] = useState(null);
@@ -64,7 +66,7 @@ const AiHairstylePage = () => {
         <button onClick={handleApplyAI}>AI 적용해보기</button>
       </div>
 
-      <hairstyleListComponent hairstyleData={hairstyleData} />
+      <HairstyleListComponent hairstyleData={hairstyleData} />
 
       {isModalVisible && <WebCamModalComponent onCapture={handleCapture} />}
     </>
