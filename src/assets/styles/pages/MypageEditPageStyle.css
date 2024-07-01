@@ -1,0 +1,97 @@
+.profile-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-left: 286px;
+    padding-right: 286px;
+    margin-top: 88px;
+}
+
+
+    .profileImgBox{
+        position: relative;
+        display: inline;
+
+        margin-bottom: 60px;
+    }
+
+        .profileImg{
+            width: 128px;
+            height: 128px;
+
+            border-radius: 999px;
+        }
+
+        .editImg{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    
+    .form-group {
+        margin-bottom: 44px;
+        width: 100%;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 14px;
+            font-weight: bold; /* Match styling from first image */
+
+            font-size: 13px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 1px solid #ccc;
+
+            background: none;
+            outline: none;
+
+            font-size: 12px;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 20px;
+        }
+
+            .gender-options>label{
+                font-size: 12px;
+            }
+
+.form-actions {
+    align-self: flex-end;
+
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+
+    padding-bottom: 80px;
+}
+
+    .save-button {
+        background-color: #2752E7; /* Match the button color */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px; /* Adjust font size to match */
+    }
+
+    .cancel-button {
+        background-color: #fff;
+        color: #dc3545; /* Match the button color */
+        padding: 10px 20px;
+        border: 1px solid #dc3545;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px; /* Adjust font size to match */
+    }
+  
