@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent';
-import HairstyleComponent from '../components/HairstyleComponent';
 import '../assets/styles/pages/MypagePage.css';
 
 const MypagePage = () => {
@@ -24,12 +23,33 @@ const MypagePage = () => {
           </div>
         </Link>
 
-        <div className='hairstyleList'>
-          <Link><HairstyleComponent/></Link>
-          <Link><HairstyleComponent/></Link>
-          <Link><HairstyleComponent/></Link>
-          <Link><HairstyleComponent/></Link>
+        <div className='row-list'>
+          <div className='row'>
+            <div className='label'>이메일 주소*</div>
+            <div>jeonpower@naver.com</div>
+          </div>
+
+          <div className='row'>
+            <div className='label'>비밀번호*</div>
+            <div>●●●●●●●●●●●●</div>
+          </div>
+
+          <div className='row'>
+            <div className='label'>성별</div>
+            <span className='gender'>
+              <div>
+                <label>남성</label>
+                <input type="radio" checked disabled/>
+              </div>
+              <div>
+                <label>여성</label>
+                <input type="radio" disabled/>
+              </div>
+            </span>
+          </div>
         </div>
+        
+
 
         <div className='deleteAccountBtn'>회원탈퇴</div>
 
