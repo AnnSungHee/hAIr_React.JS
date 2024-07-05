@@ -25,14 +25,14 @@ const MypagePage = () => {
 
         <div className='row-list'>
           <div className='row'>
-            <div className='label'>이메일 주소*</div>
+            <div className='label'>이메일 주소</div>
             <div>jeonpower@naver.com</div>
           </div>
 
-          <div className='row'>
-            <div className='label'>비밀번호*</div>
+          {/* <div className='row'>
+            <div className='label'>비밀번호</div>
             <div>●●●●●●●●●●●●</div>
-          </div>
+          </div> */}
 
           <div className='row'>
             <div className='label'>성별</div>

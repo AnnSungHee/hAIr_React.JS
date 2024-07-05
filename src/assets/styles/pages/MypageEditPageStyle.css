@@ -3,8 +3,8 @@
     flex-direction: column;
     align-items: center;
 
-    padding-left: 286px;
-    padding-right: 286px;
+    max-width: 80%;
+    padding: 0 10%;
     margin-top: 88px;
 }
 
@@ -14,6 +14,8 @@
         display: inline;
 
         margin-bottom: 60px;
+
+        cursor: pointer;
     }
 
         .profileImg{

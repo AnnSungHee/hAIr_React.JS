@@ -65,13 +65,15 @@
 
         .row{
             margin-top: 44px;
+            display: flex;
         } 
         
         .row>.label{
             font-size: 15px;
             font-weight: bold;
 
-            padding-bottom: 8px;
+            width: 100px;
+            line-height: normal;
         }
 
         .gender{
