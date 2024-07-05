@@ -1,0 +1,85 @@
+.main{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.joinText{
+    font-size: 32px;
+    
+    margin-top: 60px;
+    padding-bottom: 36px;
+}
+
+.textInput{
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 14px;
+    padding-bottom: 30px;
+
+    &>label{
+        font-size: 13px;
+        /* font-weight: bold; */
+    }
+
+    & input{
+        width: 400px;
+
+        border: none;
+        background: none;
+        outline: none;
+        padding: 8px 4px;
+        border-bottom: 1px #BEBEBE solid;
+    }
+}
+
+.radioInput{
+
+    display: flex;
+    flex-direction: column;
+
+    &>div{
+        display: flex;
+        gap: 12px;
+
+        padding: 12px 4px;
+    }
+
+
+    &>label{
+        width: 400px;
+
+        font-size: 13px;
+    
+        &~div label{
+            font-size: 12px;
+        }
+    }
+}
+
+
+
+.submitBtn{
+    display: inline-block;
+    
+    cursor: pointer;
+
+    background-color: #D4D4D4;
+    
+    border-radius: 10px;
+    
+    font-size: 12px;
+    color: #FFFCFC;
+
+    margin-top: 40px;
+    padding: 16px 180px;
+
+    transition: background-color 0.2s;
+
+    &:hover{
+        background-color: #2752E7;
+    }
+}

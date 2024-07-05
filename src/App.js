@@ -6,6 +6,7 @@ import FormPage from './pages/FormPage';
 import AiHairstylePage from './pages/AiHairstylePage';
 import MypagePage from './pages/MypagePage';
 import MypageEditPage from './pages/MypageEditPage';
+import JoinPage from './pages/JoinPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/ai-hairstyle" element={<AiHairstylePage />} />
       <Route path="/mypage" element={<MypagePage />} />
       <Route path="/mypage-edit" element={<MypageEditPage />} />
+      <Route path="/join" element={<JoinPage />} />
     </Routes>
   );
 }
