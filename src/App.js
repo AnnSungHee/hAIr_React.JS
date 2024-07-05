@@ -7,6 +7,7 @@ import AiHairstylePage from './pages/AiHairstylePage';
 import MypagePage from './pages/MypagePage';
 import MypageEditPage from './pages/MypageEditPage';
 import JoinPage from './pages/JoinPage';
+import SignInPage from './pages/SignInPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/mypage" element={<MypagePage />} />
       <Route path="/mypage-edit" element={<MypageEditPage />} />
       <Route path="/join" element={<JoinPage />} />
+      <Route path="/sign-in" element={<SignInPage />} />
     </Routes>
   );
 }

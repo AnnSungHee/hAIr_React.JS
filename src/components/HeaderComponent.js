@@ -16,7 +16,8 @@ const HeaderComponent = () => {
             <ul>
                 <li><Link to="/ai-hairstyle">AI 헤어스타일</Link></li>
                 <li><Link to="/mypage">마이페이지</Link></li>
-                <li><Link to="/logout">로그아웃</Link></li>
+                <li><Link to="/sign-in">로그인</Link></li>
+                <li><Link to="/sign-out">로그아웃</Link></li>
             </ul>
         </span>
     </nav>
