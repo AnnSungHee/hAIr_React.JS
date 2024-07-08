@@ -1,0 +1,23 @@
+.userChatBox{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    margin-top: 50px;
+}
+
+.user{
+    
+
+    color: #ffffff;
+    font-size: 20px;
+    border-radius: 12px;
+    border-top-right-radius: 0;
+
+    display: inline-block;
+    background-color: #2752E7;
+    max-width: 800px;
+
+    margin-right: 100px;
+    margin-bottom: 12px;
+    padding: 12px 32px;
+}

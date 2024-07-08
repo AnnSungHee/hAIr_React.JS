@@ -1,0 +1,18 @@
+.imgList{
+    display: flex;
+    max-width: 864px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    margin-left: 100px;
+
+    & div{
+        margin-right: 8px;
+    }
+
+    & img{
+        width: 200px;
+        height: 200px;
+    }
+}
