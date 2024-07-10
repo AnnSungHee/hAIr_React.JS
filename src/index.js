@@ -8,11 +8,11 @@ import { BrowserRouter as Router } from 'react-router-dom'; // router 설정을 
 
 const root = ReactDOM.createRoot(document.getElementById('root')); // 루트 DOM 요소를 찾아 ReactDOM 루트를 생성합니다.
 root.render(
-  <React.StrictMode> {/* React.StrictMode로 애플리케이션을 감쌉니다. */}
+  // <React.StrictMode> {/* React.StrictMode로 애플리케이션을 감쌉니다. */}
     <Router>
       <App /> {/* App 컴포넌트를 렌더링합니다. */}
     </Router>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // 웹 성능을 측정하기 위해 reportWebVitals 함수를 호출합니다.
