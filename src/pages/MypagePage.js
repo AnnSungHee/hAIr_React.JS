@@ -15,31 +15,27 @@ const MypagePage = () => {
     gender: ''
   });
 
-
   useEffect(() => {
-
     const userId = localStorage.getItem("id");
-    
+
     // 만약 로그인을 하지 않았다면 로그인 페이지로 리디렉션
     if(!userId){
       navigate("/sign-in");
       alert("로그인을 해주세요");
       return;
     } 
-    
+
     // 로그인을 했다면 회원정보 얻어와서 화면에 적용하기
     axios.get(`http://localhost:8080/member/${userId}`)
-    .then(response => {
-      // 필요한 데이터만 추출하여 상태 업데이트(response.data에 password도 포함되어있기 때문)
-      const { profileImage, email, nickname, address, gender } = response.data;
-      setUserData({ profileImage, email, nickname, address, gender });
-    })
-    .catch(error => {
-      console.error('Error fetching user data:', error);
-    });
-
-  }, []);
-
+      .then(response => {
+        // 필요한 데이터만 추출하여 상태 업데이트(response.data에 password도 포함되어있기 때문)
+        const { profileImage, email, nickname, address, gender } = response.data;
+        setUserData({ profileImage, email, nickname, address, gender });
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+  }, [navigate]); // navigate를 의존성 배열에 추가
 
   return (
     <div>

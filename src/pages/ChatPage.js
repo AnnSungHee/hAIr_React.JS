@@ -1,8 +1,6 @@
-import React, { useState, useRef } from 'react';
-import axios from 'axios';
+import React from 'react';
 import HeaderComponent from '../components/HeaderComponent';
 import '../assets/styles/pages/ChatPageStyle.css';
-import { Link } from 'react-router-dom';
 import BotChatComponent from '../components/BotChatComponent';
 import UserChatComponent from '../components/UserChatComponent';
 

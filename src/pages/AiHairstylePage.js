@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import '../assets/styles/pages/AiHairstylePageStyle.css';
 import HeaderComponent from '../components/HeaderComponent';
 import ImageBoxComponent from '../components/ImageBoxComponent';

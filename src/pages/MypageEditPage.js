@@ -106,8 +106,8 @@ const MypageEditPage = () => {
 
             <form onSubmit={handleSubmit} className="profile-form">
                 <div className='profileImgBox' onClick={handleDivClick} style={{ cursor: 'pointer' }}>
-                    <img className='profileImg' src={profileImg} alt="profile image" />
-                    <img className='editImg' src="/images/pages/MypagePage/edit.png" alt="edit image" />
+                    <img className='profileImg' src={profileImg} alt="profile" />
+                    <img className='editImg' src="/images/pages/MypagePage/edit.png" alt="edit" />
                     <input 
                         type="file" 
                         ref={fileInputRef} 

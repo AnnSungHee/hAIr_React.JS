@@ -6,10 +6,14 @@ const WebCamModalComponent = ({ onCapture, onClose }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    const videoElement = videoRef.current; // videoRef.current를 변수에 저장
+
     const getUserMedia = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        videoRef.current.srcObject = stream;
+        if (videoElement) { // videoElement가 존재하는지 확인
+          videoElement.srcObject = stream;
+        }
       } catch (error) {
         console.error("Error accessing webcam:", error);
       }
@@ -17,8 +21,8 @@ const WebCamModalComponent = ({ onCapture, onClose }) => {
     getUserMedia();
 
     return () => {
-      if (videoRef.current && videoRef.current.srcObject) {
-        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+      if (videoElement && videoElement.srcObject) { // 클린업에서도 변수 사용
+        videoElement.srcObject.getTracks().forEach(track => track.stop());
       }
     };
   }, []);

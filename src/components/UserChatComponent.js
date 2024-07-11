@@ -1,6 +1,5 @@
 import React from 'react';
 import '../assets/styles/components/UserChatComponentStyle.css';
-import ImgListComponent from './ImgListComponent';
 
 const UserChatComponent = () => {
 
