@@ -3,45 +3,36 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../assets/styles/pages/AiHairstylePageStyle.css';
 import HeaderComponent from '../components/HeaderComponent';
-import UserImageComponent from '../components/UserImageComponent';
-import WebCamModalComponent from '../components/WebCamModalComponent';
-import HairstyleListComponent from '../components/HairstyleListComponent';
-
-
+import ImageBoxComponent from '../components/ImageBoxComponent';
 
 const AiHairstylePage = () => {
-  const [capturedImage, setCapturedImage] = useState(null);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [hairstyleData, setHairstyleData] = useState([]);
-  const fileInputRef = useRef(null);
-  const canvasRef = useRef(null);
+  const [images, setImages] = useState({ face: null, hair: null });
+  const resultCanvasRef = useRef(null);
 
-  const handleCapture = (image) => {
-    setCapturedImage(image);
-    setIsModalVisible(false); // Hide the modal after capturing the image
+  const handleImageUpload = (type, imageData) => {
+    setImages((prevImages) => ({ ...prevImages, [type]: imageData }));
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setCapturedImage(e.target.result);
-      };
-      reader.readAsDataURL(file);
+  const applyAI = async () => {
+    if (!images.face || !images.hair) {
+      alert("두 개의 이미지를 모두 업로드해주세요.");
+      return;
     }
-  };
 
-  const handleApplyAI = async () => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const dataURL = canvas.toDataURL('image/png');
-      try {
-        const response = await axios.post('/api/apply-ai', { image: dataURL });
-        setHairstyleData(response.data);
-      } catch (error) {
-        console.error('Error applying AI:', error);
-      }
+    try {
+      const response = await axios.post('http://localhost:8080/simulation', images, {
+        responseType: 'blob'
+      });
+
+      const img = new Image();
+      img.onload = () => {
+        const ctx = resultCanvasRef.current.getContext('2d');
+        ctx.clearRect(0, 0, resultCanvasRef.current.width, resultCanvasRef.current.height);
+        ctx.drawImage(img, 0, 0, resultCanvasRef.current.width, resultCanvasRef.current.height);
+      };
+      img.src = URL.createObjectURL(response.data);
+    } catch (error) {
+      console.error("AI 적용 실패:", error);
     }
   };
 
@@ -49,26 +40,18 @@ const AiHairstylePage = () => {
     <>
       <HeaderComponent />
 
-      <div className='userImgBox'>
-        <span>
-          <button onClick={() => fileInputRef.current.click()}><img src="/images/pages/AiHairstylePage/folder.svg" alt="" /></button>
-          <input
-            type="file"
-            ref={fileInputRef}
-            style={{ display: 'none' }}
-            onChange={handleFileChange}
-            accept="image/*"
-          />
-          <button onClick={() => setIsModalVisible(true)}><img src="/images/pages/AiHairstylePage/camera.svg" alt="" /></button>
-        </span>
+      <div className='inputOutputBox'>
+        <div className='imgBoxContainer'>
+          <ImageBoxComponent label="얼굴" onImageUpload={(imageData) => handleImageUpload('face', imageData)} />
+          <ImageBoxComponent label="헤어" onImageUpload={(imageData) => handleImageUpload('hair', imageData)} />
+        </div>
 
-        <UserImageComponent capturedImage={capturedImage} canvasRef={canvasRef} />
-        <button onClick={handleApplyAI}>AI 적용해보기</button>
+        <div className='applyBtn' onClick={applyAI}>AI 적용해보기</div>
+
+        <div className='resultImgBox'>
+          <canvas ref={resultCanvasRef} width={550} height={550}></canvas>
+        </div>
       </div>
-
-      <HairstyleListComponent hairstyleData={hairstyleData} />
-
-      {isModalVisible && <WebCamModalComponent onCapture={handleCapture} />}
     </>
   );
 };

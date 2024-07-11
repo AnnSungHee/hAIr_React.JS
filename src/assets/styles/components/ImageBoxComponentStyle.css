@@ -1,0 +1,44 @@
+.canvasBox{
+    width: 400px;
+
+    border: 1px solid black;
+
+    
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    
+    padding: 12px;
+
+
+    &>div{
+        font-weight: bold;
+        padding-top: 12px;
+    }
+
+}
+
+.btnBox{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    &>button:nth-child(3){
+        margin-left: 8px;
+    }
+
+    
+
+}
+
+
+
+
+
+
+
+#preview{
+    background-color: aqua;
+}

@@ -1,28 +1,44 @@
-.userImgBox{
+.inputOutputBox{
     display: flex;
     flex-direction: column;
-
     align-items: center;
+    gap: 60px;
 
-    max-width: 1116px;
-
-    margin-top: 40px;
+    margin-top: 80px;
     margin-left: auto;
     margin-right: auto;
-
-    position: relative;
+    padding-bottom: 100px;
 }
 
-    .userImgBox>span{
-        position: absolute;
-        top: 20px;
-        right: 12px;
+    .imgBoxContainer{
+        display: flex;
+        justify-content: center;
+        gap: 120px;
+
+        /* flex-wrap: wrap; */
+
     }
 
-    .userImgBox>span>button{
-        margin-left: 12px;
+    .applyBtn{
+        background-color: rgb(56, 55, 55);
+        color: rgb(226, 220, 220);
+        padding: 16px 24px;
+        border-radius: 12px;
+
+        cursor: pointer;
     }
 
-    .userImgBox>button{
-        margin-top: 12px;
+    .resultImgBox{
+        background-color: white;
+        width: 600px;
+        height: 600px;
+        border: 1px black solid;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &>canvas{
+            background-color: aqua;
+        }
     }
