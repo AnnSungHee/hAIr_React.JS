@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const MypageEditPage = () => {
     const [formData, setFormData] = useState({
         email: '',
-        password: '',
+        // password: '',
         username: '',
         location: '',
         gender: ''
@@ -28,9 +28,9 @@ const MypageEditPage = () => {
                 const data = response.data;
                 setFormData({
                     email: data.email,
-                    password: data.password,
-                    username: data.nickname,
-                    location: data.address,
+                    // password: data.password,
+                    username: data.nickName,
+                    location: data.memberProfile.address.city,
                     gender: data.gender
                 });
                 setProfileImg(data.profileImage || "/images/pages/MypagePage/profile.png");
@@ -56,9 +56,9 @@ const MypageEditPage = () => {
 
         const formPayload = new FormData();
         formPayload.append('email', formData.email);
-        formPayload.append('password', formData.password);
-        formPayload.append('username', formData.username);
-        formPayload.append('location', formData.location);
+        // formPayload.append('password', formData.password);
+        formPayload.append('nickName', formData.username);
+        formPayload.append('city', formData.location);
         formPayload.append('gender', formData.gender);
 
         const file = fileInputRef.current.files[0];
@@ -71,10 +71,12 @@ const MypageEditPage = () => {
 
             if (response.status === 200) {
                 console.log('Form submitted successfully');
-                // 추가 작업: 성공적으로 제출된 후 필요한 작업을 여기에 추가
+                alert("수정이 완료되었습니다.");
+                navigate("/mypage")
             } else {
                 console.error('Form submission failed');
-                // 추가 작업: 실패 시 처리할 작업을 여기에 추가
+                alert("수정에 실패하였습니다.");
+                navigate("/mypage")
             }
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -117,12 +119,12 @@ const MypageEditPage = () => {
                 </div>
                 <div className="form-group">
                     <label>이메일 주소*</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                    <input type="text" name="email" value={formData.email} onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label>비밀번호*</label>
                     <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-                </div>
+                </div> */}
                 <div className="form-group">
                     <label>닉네임*</label>
                     <input type="text" name="username" value={formData.username} onChange={handleChange} required />
@@ -134,8 +136,8 @@ const MypageEditPage = () => {
                 <div className="form-group">
                     <label>성별*</label>
                     <div className="gender-options">
-                        <label><input type="radio" name="gender" value="남성" checked={formData.gender === '남성'} onChange={handleChange} /> 남성</label>
-                        <label><input type="radio" name="gender" value="여성" checked={formData.gender === '여성'} onChange={handleChange} /> 여성</label>
+                        <label><input type="radio" name="gender" value="male" checked={formData.gender === 'male'} onChange={handleChange} /> 남성</label>
+                        <label><input type="radio" name="gender" value="female" checked={formData.gender === 'female'} onChange={handleChange} /> 여성</label>
                     </div>
                 </div>
                 <div className="form-actions">

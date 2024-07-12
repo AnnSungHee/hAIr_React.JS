@@ -29,8 +29,9 @@ const MypagePage = () => {
     axios.get(`http://localhost:8080/member/${userId}`)
       .then(response => {
         // 필요한 데이터만 추출하여 상태 업데이트(response.data에 password도 포함되어있기 때문)
-        const { profileImage, email, nickname, address, gender } = response.data;
-        setUserData({ profileImage, email, nickname, address, gender });
+        const { profileImage, email, nickName, memberProfile, gender } = response.data;
+        setUserData({ profileImage, email, nickname:nickName, address:memberProfile.address.city, gender });
+        console.log(response.data)
       })
       .catch(error => {
         console.error('Error fetching user data:', error);
@@ -67,11 +68,11 @@ const MypagePage = () => {
             <span className='gender'>
               <div>
                 <label>남성</label>
-                <input type="radio" checked={userData.gender === '남성'} disabled />
+                <input type="radio" checked={userData.gender === 'male'} disabled />
               </div>
               <div>
                 <label>여성</label>
-                <input type="radio" checked={userData.gender === '여성'} disabled />
+                <input type="radio" checked={userData.gender === 'female'} disabled />
               </div>
             </span>
           </div>
