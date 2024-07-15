@@ -17,11 +17,11 @@ const ImageBoxComponent = ({ label, onImageUpload }) => {
           const ctx = canvasRef.current.getContext('2d');
           ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
           ctx.drawImage(img, 0, 0, canvasRef.current.width, canvasRef.current.height);
-          onImageUpload(canvasRef.current.toDataURL('image/png'));
         };
         img.src = event.target.result;
       };
       reader.readAsDataURL(file);
+      onImageUpload(file); // 파일 객체를 직접 전달
     }
   };
 
@@ -31,11 +31,24 @@ const ImageBoxComponent = ({ label, onImageUpload }) => {
       const ctx = canvasRef.current.getContext('2d');
       ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
       ctx.drawImage(img, 0, 0, canvasRef.current.width, canvasRef.current.height);
-      onImageUpload(imageData);
+      // Base64 데이터를 Blob으로 변환하여 파일 객체로 전달
+      const blob = dataURLToBlob(imageData);
+      const file = new File([blob], "webcam-image.png", { type: "image/png" });
+      onImageUpload(file);
     };
     img.src = imageData;
-    setShowWebcam(false);
   };
+
+  const dataURLToBlob = (dataURL) => {
+    const arr = dataURL.split(','), mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
+  }
 
   return (
     <>

@@ -8,8 +8,8 @@ const AiHairstylePage = () => {
   const [images, setImages] = useState({ face: null, hair: null });
   const resultCanvasRef = useRef(null);
 
-  const handleImageUpload = (type, imageData) => {
-    setImages((prevImages) => ({ ...prevImages, [type]: imageData }));
+  const handleImageUpload = (type, file) => {
+    setImages((prevImages) => ({ ...prevImages, [type]: file }));
   };
 
   const applyAI = async () => {
@@ -18,9 +18,16 @@ const AiHairstylePage = () => {
       return;
     }
 
+    const formData = new FormData();
+    formData.append('face', images.face);
+    formData.append('hair', images.hair);
+
     try {
-      const response = await axios.post('http://localhost:8080/simulation', images, {
-        responseType: 'blob'
+      const response = await axios.post('http://localhost:8080/simulation', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        responseType: 'blob',
       });
 
       const img = new Image();
@@ -41,8 +48,8 @@ const AiHairstylePage = () => {
 
       <div className='inputOutputBox'>
         <div className='imgBoxContainer'>
-          <ImageBoxComponent label="얼굴" onImageUpload={(imageData) => handleImageUpload('face', imageData)} />
-          <ImageBoxComponent label="헤어" onImageUpload={(imageData) => handleImageUpload('hair', imageData)} />
+          <ImageBoxComponent label="얼굴" onImageUpload={(file) => handleImageUpload('face', file)} />
+          <ImageBoxComponent label="헤어" onImageUpload={(file) => handleImageUpload('hair', file)} />
         </div>
 
         <div className='applyBtn' onClick={applyAI}>AI 적용해보기</div>
