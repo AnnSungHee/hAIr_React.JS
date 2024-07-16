@@ -7,6 +7,7 @@ import ImageBoxComponent from '../components/ImageBoxComponent';
 const AiHairstylePage = () => {
   const [images, setImages] = useState({ face: null, hair: null });
   const resultCanvasRef = useRef(null);
+  const loadingImgRef = useRef(null);
 
   const handleImageUpload = (type, file) => {
     setImages((prevImages) => ({ ...prevImages, [type]: file }));
@@ -16,6 +17,11 @@ const AiHairstylePage = () => {
     if (!images.face || !images.hair) {
       alert("두 개의 이미지를 모두 업로드해주세요.");
       return;
+    }
+
+    // 로딩 이미지를 보이게 설정
+    if (loadingImgRef.current) {
+      loadingImgRef.current.style.display = 'inline-block';
     }
 
     const formData = new FormData();
@@ -35,10 +41,21 @@ const AiHairstylePage = () => {
         const ctx = resultCanvasRef.current.getContext('2d');
         ctx.clearRect(0, 0, resultCanvasRef.current.width, resultCanvasRef.current.height);
         ctx.drawImage(img, 0, 0, resultCanvasRef.current.width, resultCanvasRef.current.height);
+
+        // 로딩 이미지를 숨기고 캔버스를 보이게 설정
+        if (loadingImgRef.current) {
+          loadingImgRef.current.style.display = 'none';
+        }
+        resultCanvasRef.current.style.display = 'block';
       };
       img.src = URL.createObjectURL(response.data);
     } catch (error) {
       console.error("AI 적용 실패:", error);
+      alert(`AI 적용 실패: ${error.message}`);
+      // 에러 발생 시 로딩 이미지를 숨김
+      if (loadingImgRef.current) {
+        loadingImgRef.current.style.display = 'none';
+      }
     }
   };
 
@@ -53,9 +70,10 @@ const AiHairstylePage = () => {
         </div>
 
         <div className='applyBtn' onClick={applyAI}>AI 적용해보기</div>
-
+        
         <div className='resultImgBox'>
-          <canvas ref={resultCanvasRef} width={550} height={550}></canvas>
+          <img ref={loadingImgRef} src="/loading.gif" alt="loading" style={{ display: 'none' }} />
+          <canvas ref={resultCanvasRef} width={550} height={550} style={{ display: 'none' }}></canvas>
         </div>
       </div>
     </>
