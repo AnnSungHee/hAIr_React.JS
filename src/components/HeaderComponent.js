@@ -5,11 +5,12 @@ import axios from 'axios';
 
 const HeaderComponent = () => {
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
 
     const handleLogout = async () => {
-
-        await axios.post('http://localhost:8080/member/logout', localStorage.getItem('token'), {
+        await axios.post('http://localhost:8080/member/logout', {}, {
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             }
         });
@@ -34,8 +35,11 @@ const HeaderComponent = () => {
                 <ul>
                     <li><Link to="/ai-hairstyle">AI 헤어스타일</Link></li>
                     <li><Link to="/mypage">마이페이지</Link></li>
-                    <li><Link to="/sign-in">로그인</Link></li>
-                    <li><div onClick={handleLogout} style={{ cursor: 'pointer' }}>로그아웃</div></li>
+                    {token ? (
+                        <li><div onClick={handleLogout} style={{ cursor: 'pointer' }}>로그아웃</div></li>
+                    ) : (
+                        <li><Link to="/sign-in">로그인</Link></li>
+                    )}
                 </ul>
             </span>
         </nav>
