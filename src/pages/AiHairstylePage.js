@@ -24,21 +24,12 @@ const AiHairstylePage = () => {
       loadingImgRef.current.style.display = 'inline-block';
     }
 
-    // ====================================파이썬 서버 요청용================================
     const formData = new FormData();
     formData.append('face', images.face);
-    formData.append('shape', images.hair);
-    formData.append('color', images.hair);
-    // =======================================================================================
-
-    // ==============================spring boot 서버 요청용====================================
-    // formData.append('face', images.face);
-    // formData.append('hair', images.hair);
-    // =======================================================================================
+    formData.append('hair', images.hair);
 
     try {
-      // ====================================파이썬 서버 요청용================================
-      const response = await axios.post('http://localhost:8000/hair_transfer', formData, {
+      const response = await axios.post('http://localhost:8080/simulation', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -58,32 +49,6 @@ const AiHairstylePage = () => {
         resultCanvasRef.current.style.display = 'block';
       };
       img.src = URL.createObjectURL(response.data);
-      // =======================================================================================
-
-      // ==============================spring boot 서버 요청용====================================
-      // const response = await axios.post('http://localhost:8080/simulation', formData, {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data',
-      //   },
-      //   responseType: 'blob',
-      // });
-
-      // const img = new Image();
-      // img.onload = () => {
-      //   const ctx = resultCanvasRef.current.getContext('2d');
-      //   ctx.clearRect(0, 0, resultCanvasRef.current.width, resultCanvasRef.current.height);
-      //   ctx.drawImage(img, 0, 0, resultCanvasRef.current.width, resultCanvasRef.current.height);
-
-      //   // 로딩 이미지를 숨기고 캔버스를 보이게 설정
-      //   if (loadingImgRef.current) {
-      //     loadingImgRef.current.style.display = 'none';
-      //   }
-      //   resultCanvasRef.current.style.display = 'block';
-      // };
-      // img.src = URL.createObjectURL(response.data);
-      // =======================================================================================
-
-
     } catch (error) {
       console.error("AI 적용 실패:", error);
       alert(`AI 적용 실패: ${error.message}`);

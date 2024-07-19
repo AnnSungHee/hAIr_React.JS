@@ -21,7 +21,7 @@
 
 .bot{
 
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 12px;
     border-top-left-radius: 0;
 
@@ -31,6 +31,6 @@
     
     margin-left: 100px;
     margin-bottom: 12px;
-    padding: 12px 32px;
+    padding: 12px 20px;
 
 }

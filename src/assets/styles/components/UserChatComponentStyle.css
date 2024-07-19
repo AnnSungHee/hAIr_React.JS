@@ -9,7 +9,7 @@
     
 
     color: #ffffff;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 12px;
     border-top-right-radius: 0;
 
@@ -19,5 +19,5 @@
 
     margin-right: 100px;
     margin-bottom: 12px;
-    padding: 12px 32px;
+    padding: 12px 20px;
 }
