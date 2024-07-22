@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../assets/styles/pages/AiHairstylePageStyle.css';
 import HeaderComponent from '../components/HeaderComponent';
@@ -8,6 +9,17 @@ const AiHairstylePage = () => {
   const [images, setImages] = useState({ face: null, hair: null });
   const resultCanvasRef = useRef(null);
   const loadingImgRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && location.state.imageSrc) {
+      setImages(prevImages => ({ ...prevImages, hair: location.state.imageSrc }));
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleImageUpload = (type, file) => {
     setImages((prevImages) => ({ ...prevImages, [type]: file }));
@@ -19,7 +31,6 @@ const AiHairstylePage = () => {
       return;
     }
 
-    // 로딩 이미지를 보이게 설정
     if (loadingImgRef.current) {
       loadingImgRef.current.style.display = 'inline-block';
     }
@@ -42,7 +53,6 @@ const AiHairstylePage = () => {
         ctx.clearRect(0, 0, resultCanvasRef.current.width, resultCanvasRef.current.height);
         ctx.drawImage(img, 0, 0, resultCanvasRef.current.width, resultCanvasRef.current.height);
 
-        // 로딩 이미지를 숨기고 캔버스를 보이게 설정
         if (loadingImgRef.current) {
           loadingImgRef.current.style.display = 'none';
         }
@@ -52,7 +62,6 @@ const AiHairstylePage = () => {
     } catch (error) {
       console.error("AI 적용 실패:", error);
       alert(`AI 적용 실패: ${error.message}`);
-      // 에러 발생 시 로딩 이미지를 숨김
       if (loadingImgRef.current) {
         loadingImgRef.current.style.display = 'none';
       }
@@ -66,7 +75,7 @@ const AiHairstylePage = () => {
       <div className='inputOutputBox'>
         <div className='imgBoxContainer'>
           <ImageBoxComponent label="얼굴" onImageUpload={(file) => handleImageUpload('face', file)} />
-          <ImageBoxComponent label="헤어" onImageUpload={(file) => handleImageUpload('hair', file)} />
+          <ImageBoxComponent label="헤어" onImageUpload={(file) => handleImageUpload('hair', file)} imageUrl={images.hair} />
         </div>
 
         <div className='applyBtn' onClick={applyAI}>AI 적용해보기</div>

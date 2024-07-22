@@ -10,6 +10,7 @@
 
     color: #ffffff;
     font-size: 16px;
+    line-height: 26px;
     border-radius: 12px;
     border-top-right-radius: 0;
 
@@ -17,7 +18,15 @@
     background-color: #2752E7;
     max-width: 800px;
 
+    box-shadow: 3px 5px 8px #c7c7c7;
+
     margin-right: 100px;
     margin-bottom: 12px;
     padding: 12px 20px;
+}
+
+
+.chatImage{
+    width: 400px;
+    border-radius: 20px;
 }

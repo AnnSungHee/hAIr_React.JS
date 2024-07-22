@@ -1,11 +1,23 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import '../assets/styles/components/ImageBoxComponentStyle.css';
 import WebCamModalComponent from '../components/WebCamModalComponent';
 
-const ImageBoxComponent = ({ label, onImageUpload }) => {
+const ImageBoxComponent = ({ label, onImageUpload, imageUrl }) => {
   const canvasRef = useRef(null);
   const fileInputRef = useRef(null);
   const [showWebcam, setShowWebcam] = useState(false);
+
+  useEffect(() => {
+    if (imageUrl) {
+      const img = new Image();
+      img.onload = () => {
+        const ctx = canvasRef.current.getContext('2d');
+        ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+        ctx.drawImage(img, 0, 0, canvasRef.current.width, canvasRef.current.height);
+      };
+      img.src = imageUrl;
+    }
+  }, [imageUrl]);
 
   const handleFileInput = (e) => {
     const file = e.target.files[0];

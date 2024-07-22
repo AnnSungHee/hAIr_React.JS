@@ -43,14 +43,32 @@
             font-size: 20px;
         
             padding: 20px 20px;
+            margin: 60px 0px;
         }
         
         &>.btnArea{
             position: absolute;
             right: 20px;
-            top: 12px;
+            top: 76px;
+            cursor: pointer;
+        }
+
+        &>.fileUploadLabel{
+            position: absolute;
+            right: 90px;
+            bottom: 90px;
+            padding: 8px 12px;
+            color: white;
+            background-color: #535e85;
+            border-radius: 4px;
             cursor: pointer;
         }
     }
 
 
+    .loading-indicator {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    
