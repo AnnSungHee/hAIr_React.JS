@@ -1,124 +1,134 @@
+.engScript{
+    color: #A58D78;
+    font-size: 96px;
+    font-weight: bold;
+    line-height: 70%;
 
-#mainBanner{
-    position: relative;
+    &>span{
+        font-size: 48px;
+    }
 
-    margin-top: 48px;
 }
 
-    .bannerImg {
-        width: 100%;
-        height: 520px;
+    .engScript1{
+        width: 633px;
+        /* height: 191px; */
+        word-break: break-all;
     }
 
-    .links{
-        position: absolute;
-        bottom: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    .engScript2{
+        width: 478px;
+        text-align: end;
     }
+
+
+
+.korScript{
     
-        .links>p{
-            color: #808080;
-        }
+    width: 720px;
+    color: #4A4C4C;
+    font-size: 24px;
+}
 
-            .chatlink{
-                display: inline-block;
-                padding: 12px;
-                padding-left: 40px;
-                padding-right: 40px;
-                margin-bottom: 20px;
-                
-                border-radius: 8px;
+.tryChatBtn{
+    margin-top: 24px;
 
-                background-color: #2752E7;
-
-                color: #FFFFFF;
-
-                text-decoration: none;
-            }
+    &>a{
+        color: #A58D78;
+        font-size: 24px;
+        border-radius: 60px;
+        border: 1px solid #A58D78;
+        padding: 16px 40px;
+        text-decoration: none;
+    }
+}
 
 
 
-/* 홈페이지 소개 부분 */
+.bannerImg1{
+    width: 431px;
+}
 
-#serviceIntro{
+.bannerImg2{
+    width: 402px;
+}
+
+.bannerImg3{
+    width: 1076px;
+    transform: translateX(-500px);
+}
+
+.pageIndicator{
+    /* height: 100%; */
+    font-family: 'Kadwa', serif;
+    color: #A58D78;
+    font-size: 72px;
+
+    &>span{
+        color: #878988;
+        font-size: 36px;
+    }
+}
+
+    .pageIndicator3{
+        transform: translateX(-600px);
+    }
+
+.iconList{
+    display: flex;
+    justify-content: end;
+    gap: 40px;
+
+    &>img{
+        width: 32px;
+    }
+
+    &>img[src="/facebook.png"]{
+        width: 16px;
+        height: 32px;
+    }
+}
+
+
+
+
+.textBox{
+    height: 100%;
     display: flex;
     flex-direction: column;
-
-    align-items: center;
-
-    margin-top: 80px;
+    justify-content: center;
+    gap: 34px;
 }
 
-    .faceAnalyze{
-        display: flex;
-    }
+.textNImg{
+    height: 644px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 120px;
+}
 
-        .skelImg{
-            width: 350px;
-            height: 350px;
-        }
+.pageNcontent{
+    /* min-width: 100%; */
+    display: flex;
+    gap: 0px;
+}
 
+#main{
+    /* padding: 0 208px; */
+    padding-bottom: 28px;
 
-        .faceAnalyze div{
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-            .faceAnalyze>span{
-                font-size: 20px;
-            }
-
-
-        .faceAnalyze span{
-            display: flex;
-            flex-direction: column;
-
-            justify-content: center;
-
-            margin-left: 40px;
-        }
-
-            .faceAnalyze span>p{
-                margin-top: 52px;
-            }
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    /* justify-content: end; */
+}
 
 
-
-    .styleRecommend{
-        display: flex;
-
-        text-align: end;
-
-        margin-top: 65px;
-        margin-bottom: 40px;
-    }
-
-
-        .styleRecommend div{
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-            .styleRecommend>span{
-                font-size: 20px;
-            }
-
-
-        .styleRecommend span{
-            display: flex;
-            flex-direction: column;
-
-            justify-content: center;
-
-            margin-right: 40px;
-        }
-
-            .styleRecommend span>p{
-                margin-top: 52px;
-            }
+.pageNcontents{
+    /* overflow: hidden; */
+    display: flex;
+    padding: 0 208px;
+    gap: 308px;
+    transition: transform 0.7s ease-in-out;
+}
