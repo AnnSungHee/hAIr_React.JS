@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent';
+import HairstyleComponent from '../components/HairstyleComponent';
 import '../assets/styles/pages/MypagePage.css';
 import axios from 'axios';
 
@@ -8,7 +9,6 @@ const MypagePage = () => {
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({
-    profileImage: '',
     email: '',
     nickname: '',
     address: '',
@@ -29,8 +29,8 @@ const MypagePage = () => {
     axios.get(`http://localhost:8080/member/${userId}`)
       .then(response => {
         // 필요한 데이터만 추출하여 상태 업데이트(response.data에 password도 포함되어있기 때문)
-        const { profileImage, email, nickName, memberProfile, gender } = response.data;
-        setUserData({ profileImage, email, nickname:nickName, address:memberProfile.address.city, gender });
+        const { email, nickName, memberProfile, gender } = response.data;
+        setUserData({ email, nickname:nickName, address:memberProfile.address.city, gender });
         console.log(response.data)
       })
       .catch(error => {
@@ -43,21 +43,28 @@ const MypagePage = () => {
       <HeaderComponent />
 
       <div className='pageMain'>
-        <Link to="/mypage-edit">
-          <div className='profileBox'>
-            <div className='profileImgBox'>
-              <img className='profileImg' src={userData.profileImage || "/images/pages/MypagePage/profile.png"} alt="profile" />
-              <img className='editImg' src="/images/pages/MypagePage/edit.png" alt="edit" />
-            </div>
-            <div className='userName'>{userData.nickname || 'User'}</div>
-            <div className='location'>
-              <img src="/images/pages/MypagePage/location.svg" alt="location" />
-              {userData.address || '주소 정보 없음'}
-            </div>
+        
+        <div className='profileBox'>
+          <div className='userName'>
+            {userData.nickname || 'User'}
+            <Link to="/mypage-edit"><img className='profileEditIcon' src="/edit.png" alt="edit"/></Link>
           </div>
-        </Link>
+          <div className='location'>
+            <img src="/images/pages/MypagePage/location.svg" alt="location" />
+            {userData.address || '주소 정보 없음'}
+          </div>
+        </div>
 
-        <div className='row-list'>
+        <div className='styleComponentList'>
+          <HairstyleComponent/>
+          <HairstyleComponent/>
+          <HairstyleComponent/>
+          <HairstyleComponent/>
+          <HairstyleComponent/>
+        </div>
+        
+
+        {/* <div className='row-list'>
           <div className='row'>
             <div className='label'>이메일 주소</div>
             <div>{userData.email || '이메일 정보 없음'}</div>
@@ -77,8 +84,7 @@ const MypagePage = () => {
             </span>
           </div>
         </div>
-
-        <div className='deleteAccountBtn'>회원탈퇴</div>
+        <div className='deleteAccountBtn'>회원탈퇴</div> */}
       </div>
     </div>
   );

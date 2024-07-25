@@ -2,19 +2,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 40px;
 
-    margin-top: 88px;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 32px;
 
     max-width: 1280px;
-}
 
-    .pageMain a{
+    & a{
         text-decoration: none; /* 밑줄 제거 */
         color: inherit; /* 부모 요소의 색상을 상속받음 */
     }
+}
 
     .profileBox{
         display: flex;
@@ -23,82 +24,42 @@
     }
 
 
-        .profileImgBox{
-            position: relative;
-            display: inline;
-        }
-        
-        .profileImg{
-                width: 128px;
-                height: 128px;
+    .userName{
+        display: flex;
+        align-items: c;
+        gap: 8px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #232323;
 
-                border-radius: 999px;
-            }
-
-            .editImg{
-                position: absolute;
-                bottom: 0;
-                right: 0;
-            }
-
-
-        .userName{
-            font-size: 24px;
-            font-weight: bold;
-            color: #232323;
-
-            margin-top: 20px;
-        }
-
-        .location{
-            color: #555555;
-            display: flex;
-            align-items: center;
-
-            margin-top: 20px;
-        }
-
-    .row-list{
-        
-        margin-top: 12px;
+        margin-top: 20px;
     }
 
-        .row{
-            margin-top: 44px;
-            display: flex;
-        } 
-        
-        .row>.label{
-            font-size: 15px;
-            font-weight: bold;
+    .location{
+        color: #555555;
+        display: flex;
+        align-items: center;
 
-            width: 100px;
-            line-height: normal;
-        }
-
-        .gender{
-            display: flex;
-        }
-
-            .gender>div:last-child{
-                margin-left: 12px;
-            }
-
-
-
-    .deleteAccountBtn{
-        /* align-self: flex-end; */
-
-        background-color: #B03E3E;
-        
-        padding: 20px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        margin-top: 80px;
-
-        border-radius: 4px;
-
-        color: #FFFFFF;
-
-        cursor: pointer;
+        margin-top: 20px;
     }
+
+    .profileEditIcon{
+        width: 20px;
+        height: 20px;
+    }
+
+
+
+.styleComponentList{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 72px;
+    column-gap: 80px;
+    
+    padding-top: 80px;
+
+    border-top: 1px solid; /* 테두리 두께 설정 */
+    border-image: linear-gradient(90deg, rgba(187, 158, 125, 0) 15%, rgba(187, 158, 125, 1) 50%, rgba(187, 158, 125, 0) 85%);
+    border-image-slice: 1; /* 테두리 이미지를 전체 테두리로 확장 */
+}

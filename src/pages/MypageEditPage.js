@@ -15,7 +15,6 @@ const MypageEditPage = () => {
     });
 
     const fileInputRef = useRef(null);
-    const [profileImg, setProfileImg] = useState("/images/pages/MypagePage/profile.png");
     const navigate = useNavigate();
     
 
@@ -33,7 +32,6 @@ const MypageEditPage = () => {
                     location: data.memberProfile.address.city,
                     gender: data.gender
                 });
-                setProfileImg(data.profileImage || "/images/pages/MypagePage/profile.png");
             })
             .catch(error => {
                 console.error('Error fetching user data:', error);
@@ -61,11 +59,6 @@ const MypageEditPage = () => {
         formPayload.append('city', formData.location);
         formPayload.append('gender', formData.gender);
 
-        const file = fileInputRef.current.files[0];
-        if (file) {
-            formPayload.append('profileImage', file);
-        }
-
         try {
             const response = await axios.put(`http://localhost:8080/member/${userId}`, formPayload);
 
@@ -83,21 +76,6 @@ const MypageEditPage = () => {
         }
     };
 
-    const handleDivClick = () => {
-        fileInputRef.current.click();
-    };
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfileImg(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
     const handleCancel = () => {
         navigate('/mypage');
     };
@@ -107,18 +85,9 @@ const MypageEditPage = () => {
             <HeaderComponent />
 
             <form onSubmit={handleSubmit} className="profile-form">
-                <div className='profileImgBox' onClick={handleDivClick} style={{ cursor: 'pointer' }}>
-                    <img className='profileImg' src={profileImg} alt="profile" />
-                    <img className='editImg' src="/images/pages/MypagePage/edit.png" alt="edit" />
-                    <input 
-                        type="file" 
-                        ref={fileInputRef} 
-                        style={{ display: 'none' }} 
-                        onChange={handleFileChange} 
-                    />
-                </div>
+                <h1>개인정보 수정</h1>
                 <div className="form-group">
-                    <label>이메일 주소*</label>
+                    <label>이메일 주소 *</label>
                     <input type="text" name="email" value={formData.email} onChange={handleChange} required />
                 </div>
                 {/* <div className="form-group">
@@ -126,7 +95,7 @@ const MypageEditPage = () => {
                     <input type="password" name="password" value={formData.password} onChange={handleChange} required />
                 </div> */}
                 <div className="form-group">
-                    <label>닉네임*</label>
+                    <label>닉네임 *</label>
                     <input type="text" name="username" value={formData.username} onChange={handleChange} required />
                 </div>
                 <div className="form-group">
@@ -134,7 +103,7 @@ const MypageEditPage = () => {
                     <input type="text" name="location" value={formData.location} onChange={handleChange} />
                 </div>
                 <div className="form-group">
-                    <label>성별*</label>
+                    <label>성별 *</label>
                     <div className="gender-options">
                         <label><input type="radio" name="gender" value="male" checked={formData.gender === 'male'} onChange={handleChange} /> 남성</label>
                         <label><input type="radio" name="gender" value="female" checked={formData.gender === 'female'} onChange={handleChange} /> 여성</label>

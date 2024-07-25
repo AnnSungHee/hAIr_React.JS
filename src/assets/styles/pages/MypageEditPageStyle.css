@@ -6,95 +6,88 @@
     max-width: 80%;
     padding: 0 10%;
     margin-top: 88px;
+
+    &>h1{
+        font-size: 24px;
+        font-weight: bold;
+        color: #232323;
+
+        margin-bottom: 80px;
+    }
 }
 
 
-    .profileImgBox{
-        position: relative;
-        display: inline;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 44px;
+    width: 100%;
 
-        margin-bottom: 60px;
-
-        cursor: pointer;
+    & label{
+        font-size: 18px;
+        color: #000000;
+        padding: 0 4px;
     }
 
-        .profileImg{
-            width: 128px;
-            height: 128px;
+    & input[type="text"],
+    & input[type="email"],
+    & input[type="password"] {
+        border: none;       /* 테두리 제거 */
+        background: none;   /* 배경색 제거 */
+        outline: none;      /* 외곽선 제거 */
+        box-shadow: none;   /* 그림자 제거 */
+        -webkit-appearance: none; /* 웹킷 브라우저 기본 스타일 제거 */
+        -moz-appearance: none;    /* 파이어폭스 브라우저 기본 스타일 제거 */
+        appearance: none;         /* 기본 스타일 제거 */
+        padding: 0;       /* 기본 패딩 제거 */
+        margin: 0;        /* 기본 마진 제거 */
+        font: inherit;    /* 부모 요소의 폰트 상속 */
+        color: inherit;   /* 부모 요소의 색상 상속 */
 
-            border-radius: 999px;
-        }
-
-        .editImg{
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
-    
-    .form-group {
-        margin-bottom: 44px;
+        border-bottom: 0.5px #A58D78 solid;
+        padding: 10px 4px;
+        padding-top: 0;
         width: 100%;
     }
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 14px;
-            font-weight: bold; /* Match styling from first image */
 
-            font-size: 13px;
-        }
+.gender-options {
+    display: flex;
+    gap: 20px;
 
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border: none;
-            border-bottom: 1px solid #ccc;
-
-            background: none;
-            outline: none;
-
-            font-size: 12px;
-        }
-
-        .gender-options {
-            display: flex;
-            gap: 20px;
-        }
-
-            .gender-options>label{
-                font-size: 12px;
-            }
+    &>label{
+        font-size: 16px;
+    }
+}
 
 .form-actions {
     align-self: flex-end;
 
     display: flex;
     justify-content: end;
-    gap: 20px;
+    gap: 24px;
 
     padding-bottom: 80px;
 }
 
-    .save-button {
-        background-color: #2752E7; /* Match the button color */
-        color: white;
-        padding: 10px 20px;
+    & .save-button {
         border: none;
+        font-size: 16px; 
+        color: #ffffff;
         border-radius: 4px;
+        background-color: #A58D78;
+        padding: 10px 32px;
         cursor: pointer;
-        font-size: 16px; /* Adjust font size to match */
     }
 
     .cancel-button {
-        background-color: #fff;
-        color: #dc3545; /* Match the button color */
-        padding: 10px 20px;
-        border: 1px solid #dc3545;
+        color: #CF667F;
+        border: 1px solid #CF667F;
         border-radius: 4px;
+        padding: 10px 32px;
         cursor: pointer;
-        font-size: 16px; /* Adjust font size to match */
+        font-size: 16px; 
     }
   
