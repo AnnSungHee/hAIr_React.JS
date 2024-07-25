@@ -1,41 +1,23 @@
-nav{
-    max-width: 1280px;
-    
-    padding-right: 16px;
-    margin-top: 48px;
-    margin-left: auto;
-    margin-right: auto;
+#header>h1{
+    display: none;
 }
 
-    h1{
-        display: none;
-    }
+.headerContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 120px;
+}
 
-    .headerContent{
-        display: flex;
-    }
 
-        .companyLogo{
-            width: 260px;
-            height: 52px;
-        }
+.logo{
+    height: 120px;
+}
 
-        ul{
-            display: flex;
+.linkList{
+    font-size: 24px;
+    font-weight: bold;
 
-            margin-left: auto;
-        }
-
-            li{
-                display: flex;
-                align-items: center;
-            }
-
-                li>*{
-                    text-decoration: none;
-                    color: inherit;
-
-                    font-size: 20px;
-
-                    margin-left: 30px;
-                }
+    display: flex;
+    gap: 44px;
+}

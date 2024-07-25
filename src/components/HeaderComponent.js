@@ -24,21 +24,22 @@ const HeaderComponent = () => {
     };
 
     return (
-        <nav>
+        <nav id='header'>
             <h1>헤더</h1>
             <span className='headerContent'>
                 <div>
                     <Link to="/">
-                        <img className='companyLogo' src="/logo.png" alt="회사 로고" />
+                        <img className='logo' src="/logo.png" alt="회사 로고" />
                     </Link>
                 </div>
-                <ul>
-                    <li><Link to="/ai-hairstyle">AI 헤어스타일</Link></li>
-                    <li><Link to="/mypage">마이페이지</Link></li>
+                <ul className='linkList'>
+                    <li><Link to="/chatpage">ChatBot</Link></li>
+                    <li><Link to="/ai-hairstyle">AI Simulation</Link></li>
+                    <li><Link to="/mypage">Mypage</Link></li>
                     {token ? (
-                        <li><div onClick={handleLogout} style={{ cursor: 'pointer' }}>로그아웃</div></li>
+                        <li><div onClick={handleLogout} style={{ cursor: 'pointer' }}>Log out</div></li>
                     ) : (
-                        <li><Link to="/sign-in">로그인</Link></li>
+                        <li><Link to="/sign-in">Log in</Link></li>
                     )}
                 </ul>
             </span>
