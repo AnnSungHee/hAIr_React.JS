@@ -48,35 +48,34 @@ const SignInPage = () => {
     return (
         <>
             <HeaderComponent />
-            <div className='main'>
-                <div className='textInput'>
-                    <label>이메일 주소</label>
-                    <input
-                        type="text"
-                        name='email'
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className='textInput'>
-                    <label>비밀번호</label>
-                    <input
-                        type="password"
-                        name='password'
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className='signInBtn' onClick={handleSubmit}>로그인</div>
-                {loginError && <div className='error'>{loginError}</div>}
-                <div className='linkList'>
-                    <Link to="/join"><div>회원가입</div></Link>
-                    <div>ㅣ</div>
-                    <Link to=""><div>이메일 찾기</div></Link>
-                    <div>ㅣ</div>
-                    <Link to=""><div>비밀번호 찾기</div></Link>
-                </div>
-            </div>
+            
+            <section id='loginBox'>
+                <span className='emailNPasswordInputBox'>
+                    <div className='emailInput'>
+                        <input
+                            type="text"
+                            name='email'
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder='Email'
+                        />
+                    </div>
+                    <div className='passwordInput'>
+                        <input
+                            type="password"
+                            name='password'
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder='Password'
+                        />
+                    </div>
+                </span>
+                <span className='signInBtnNjoinBtn'>
+                    <div className='signInBtn' onClick={handleSubmit}>로그인</div>
+                    {loginError && <div className='error'>{loginError}</div>}
+                    <div className='joinBtn'><Link to="/join">회원가입</Link></div>
+                </span>
+            </section>
         </>
     );
 };

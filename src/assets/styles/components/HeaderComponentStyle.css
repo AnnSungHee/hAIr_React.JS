@@ -1,24 +1,32 @@
-#header>h1{
+#header>h1 {
     display: none;
 }
 
-.headerContent{
+.headerContent {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 40px 120px;
 }
 
-
-.logo{
+.logo {
     height: 120px;
 }
 
-.linkList{
+.linkList {
     color: #4A4C4C;
     font-size: 24px;
     font-weight: bold;
-
     display: flex;
     gap: 44px;
+}
+
+.linkList a {
+    color: inherit; /* 링크 색상을 상속 */
+    text-decoration: none; /* 기본 링크 밑줄 제거 */
+}
+
+.selectedLink {
+    color: #A58D78 !important;
+    border-bottom: 3px solid #A58D78;
 }

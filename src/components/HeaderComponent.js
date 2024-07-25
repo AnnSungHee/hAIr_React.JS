@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../assets/styles/components/HeaderComponentStyle.css';
 import axios from 'axios';
 
 const HeaderComponent = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const token = localStorage.getItem('token');
 
     const handleLogout = async () => {
@@ -23,6 +24,11 @@ const HeaderComponent = () => {
         navigate('/');  // 로그아웃 후 홈 페이지로 리디렉션 
     };
 
+    // Debugging: 현재 경로를 출력해봅시다.
+    console.log('Current location:', location.pathname);
+
+    const isActive = (path) => location.pathname === path || location.pathname.startsWith(path);
+
     return (
         <nav id='header'>
             <h1>헤더</h1>
@@ -33,13 +39,47 @@ const HeaderComponent = () => {
                     </Link>
                 </div>
                 <ul className='linkList'>
-                    <li><Link to="/chatpage">ChatBot</Link></li>
-                    <li><Link to="/ai-hairstyle">AI Simulation</Link></li>
-                    <li><Link to="/mypage">Mypage</Link></li>
+                    <li>
+                        <Link 
+                            to="/chatpage" 
+                            className={isActive('/chatpage') ? 'selectedLink' : ''}
+                        >
+                            ChatBot
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                            to="/ai-hairstyle" 
+                            className={isActive('/ai-hairstyle') ? 'selectedLink' : ''}
+                        >
+                            AI Simulation
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                            to="/mypage" 
+                            className={isActive('/mypage') ? 'selectedLink' : ''}
+                        >
+                            Mypage
+                        </Link>
+                    </li>
                     {token ? (
-                        <li><div onClick={handleLogout} style={{ cursor: 'pointer' }}>Log out</div></li>
+                        <li>
+                            <div onClick={handleLogout} style={{ cursor: 'pointer' }}>
+                                Log out
+                            </div>
+                        </li>
                     ) : (
-                        <li><Link to="/sign-in">Log in</Link></li>
+                        <>
+                            <li>
+                                <Link 
+                                    to="/sign-in" 
+                                    className={isActive('/sign-in') || isActive('/join') ? 'selectedLink' : ''}
+                                >
+                                    Log in
+                                </Link>
+                            </li>
+                        </>
                     )}
                 </ul>
             </span>
