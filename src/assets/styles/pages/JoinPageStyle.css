@@ -1,85 +1,86 @@
-.main{
-
+#joinBox{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 80px;
+    padding: 40px 0;
+
+    &>h1{
+        color: #232323;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    & label{
+        font-size: 18px;
+        padding: 0 4px;
+        /* font-weight: lighter; */
+    }
+
+    & input[type="text"],
+    & input[type="password"]{
+        border-bottom: 0.5px #A58D78 solid;
+        padding: 10px 4px;
+        padding-top: 0;
+        width: 100%;
+    }
 }
 
-.joinText{
-    font-size: 32px;
-    
-    margin-top: 60px;
-    padding-bottom: 36px;
-}
 
 .textInput{
-
     display: flex;
     flex-direction: column;
-
-    margin-top: 14px;
+    gap: 16px;
     padding-bottom: 30px;
-
-    &>label{
-        font-size: 13px;
-        /* font-weight: bold; */
-    }
-
-    & input{
-        width: 400px;
-
-        border: none;
-        background: none;
-        outline: none;
-        padding: 8px 4px;
-        border-bottom: 1px #BEBEBE solid;
-    }
 }
 
 .radioInput{
-
     display: flex;
     flex-direction: column;
+    gap: 4px;
 
     &>div{
         display: flex;
-        gap: 12px;
-
+        gap: 30px;
         padding: 12px 4px;
-    }
-
-
-    &>label{
-        width: 400px;
-
-        font-size: 13px;
-    
-        &~div label{
-            font-size: 12px;
-        }
     }
 }
 
+.btnList{
+    display: flex;
+    justify-content: end;
+    gap: 24px;
 
+    font-size: 16px;
 
-.submitBtn{
-    display: inline-block;
-    
-    cursor: pointer;
-
-    background-color: #D4D4D4;
-    
-    border-radius: 10px;
-    
-    font-size: 12px;
-    color: #FFFCFC;
-
-    margin-top: 40px;
-    padding: 16px 180px;
-
-    transition: background-color 0.2s;
-
-    &:hover{
-        background-color: #2752E7;
+    &>.submitBtn{
+        color: #ffffff;
+        border-radius: 4px;
+        background-color: #A58D78;
+        padding: 10px 32px;
+        cursor: pointer;
     }
+
+    &>.cancelBtn{
+        color: #CF667F;
+        border: 1px solid #CF667F;
+        border-radius: 4px;
+        padding: 10px 32px;
+        cursor: pointer;
+    }
+}
+
+.inputList{
+    width: 900px;
+    gap: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.inputListNBtn{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 60px;
 }

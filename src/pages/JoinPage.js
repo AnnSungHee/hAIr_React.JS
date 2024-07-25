@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import HeaderComponent from '../components/HeaderComponent';
 import '../assets/styles/pages/JoinPageStyle.css';
+import { useNavigate } from 'react-router-dom';
 
 const JoinPage = () => {
     const [formData, setFormData] = useState({
@@ -64,6 +65,12 @@ const JoinPage = () => {
         }
     };
 
+    const navigate = useNavigate();
+
+    const handleCancel = () => {
+        navigate('/sign-in');
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // 성별 검증 추가
@@ -106,76 +113,83 @@ const JoinPage = () => {
     return (
         <>
             <HeaderComponent />
-            <div className='main'>
-                <div className='joinText'>회원가입</div>
-                <div className='textInput'>
-                    <label>이메일 주소*</label>
-                    <input
-                        type="text"
-                        name='email'
-                        value={formData.email}
-                        onChange={handleChange}
-                        onBlur={handleEmailBlur}
-                    />
-                    {validationErrors.email && <span className='error'>{validationErrors.email}</span>}
-                </div>
-                <div className='textInput'>
-                    <label>비밀번호*</label>
-                    <input
-                        type="password"
-                        name='password'
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className='textInput'>
-                    <label>닉네임*</label>
-                    <input
-                        type="text"
-                        name='nickName'
-                        value={formData.nickName}
-                        onChange={handleChange}
-                        onBlur={handleNickNameBlur}
-                    />
-                    {validationErrors.nickName && <span className='error'>{validationErrors.nickName}</span>}
-                </div>
-                <div className='textInput'>
-                    <label>주소</label>
-                    <input
-                        type="text"
-                        name='city'
-                        value={formData.city}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className='radioInput'>
-                    <label>성별*</label>
-                    <div>
-                        <div>
-                            <label>남성</label>
+            <section id='joinBox'>
+                <h1>회원가입</h1>
+                <div className='inputListNBtn'>
+                    <div className="inputList">
+                        <div className='textInput'>
+                            <label>이메일 주소 *</label>
                             <input
-                                type="radio"
-                                name='gender'
-                                value="male"
-                                checked={formData.gender === 'male'}
+                                type="text"
+                                name='email'
+                                value={formData.email}
+                                onChange={handleChange}
+                                onBlur={handleEmailBlur}
+                            />
+                            {validationErrors.email && <span className='error'>{validationErrors.email}</span>}
+                        </div>
+                        <div className='textInput'>
+                            <label>비밀번호 *</label>
+                            <input
+                                type="password"
+                                name='password'
+                                value={formData.password}
                                 onChange={handleChange}
                             />
                         </div>
-                        <div>
-                            <label>여성</label>
+                        <div className='textInput'>
+                            <label>닉네임 *</label>
                             <input
-                                type="radio"
-                                name='gender'
-                                value="female"
-                                checked={formData.gender === 'female'}
+                                type="text"
+                                name='nickName'
+                                value={formData.nickName}
+                                onChange={handleChange}
+                                onBlur={handleNickNameBlur}
+                            />
+                            {validationErrors.nickName && <span className='error'>{validationErrors.nickName}</span>}
+                        </div>
+                        <div className='textInput'>
+                            <label>주소</label>
+                            <input
+                                type="text"
+                                name='city'
+                                value={formData.city}
                                 onChange={handleChange}
                             />
+                        </div>
+                        <div className='radioInput'>
+                            <label>성별 *</label>
+                            <div>
+                                <div>
+                                    <label>남성</label>
+                                    <input
+                                        type="radio"
+                                        name='gender'
+                                        value="male"
+                                        checked={formData.gender === 'male'}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div>
+                                    <label>여성</label>
+                                    <input
+                                        type="radio"
+                                        name='gender'
+                                        value="female"
+                                        checked={formData.gender === 'female'}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </div>
+                            {validationErrors.gender && <span className='error'>{validationErrors.gender}</span>}
                         </div>
                     </div>
-                    {validationErrors.gender && <span className='error'>{validationErrors.gender}</span>}
+                    <div className='btnList'>
+                        <div className='submitBtn' onClick={handleSubmit}>가 입</div>
+                        <div className='cancelBtn' onClick={handleCancel}>취 소</div>
+                    </div>
                 </div>
-                <div className='submitBtn' onClick={handleSubmit}>가입하기</div>
-            </div>
+            </section>
         </>
     );
 };

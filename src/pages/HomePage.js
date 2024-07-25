@@ -19,12 +19,12 @@ const HomePage = () => {
     <>
       <HeaderComponent />
       <section id="main">
-        <div className="pageNcontents" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+        <div className="pageNcontents" style={{ transform: `translateX(-${currentSlide * 110}%)` }}>
           <span className="pageNcontent">
             <span className="textNImg">
               <span className="textBox">
                 <p className="engScript engScript1">Personalized <span>Style Services</span></p>
-                <p className="korScript korScript1">나만을 위한 AI 헤어 상담사와의 대화로 나만의 스타일을 완성하세요</p>
+                <p className="korScript korScript1">나만의 AI 헤어 상담사와의 대화로 나만의 스타일을 완성하세요</p>
                 <div className="tryChatBtn"><Link to="/chatpage">체 험 하 기</Link></div>
               </span>
               <div><img className="bannerImg1" src="/women1.png" alt="여자1" /></div>
