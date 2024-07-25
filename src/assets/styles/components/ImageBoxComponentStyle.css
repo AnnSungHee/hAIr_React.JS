@@ -1,44 +1,51 @@
 .canvasBox{
-    width: 400px;
-
-    border: 1px solid black;
-
-    
-    position: relative;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
+    align-items: start;
     
     padding: 12px;
 
 
     &>div{
+        font-size: 40px;
         font-weight: bold;
-        padding-top: 12px;
+        color: #A58D78;
+        margin-bottom: 8px;
     }
 
+    &>canvas{
+        width: 300px;
+        height: 300px;
+        border-radius: 8px;
+        border: 1px solid #BB9E7D;
+        margin-bottom: 16px;
+    }
 }
 
 .btnBox{
-    position: absolute;
-    right: 10px;
-    top: 10px;
+    align-self: flex-end;
+    display: flex;
+    gap: 20px;
 
-    &>button:nth-child(3){
-        margin-left: 8px;
+    & button{
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+        outline: none;
+
+        &>img[src="/camera.png"]{
+            width: 26px;
+        }
+
+        
+        &>img[src="/folder.png"]{
+            width: 31px;
+        }
     }
-
-    
-
 }
 
 
-
-
-
-
-
-#preview{
-    background-color: aqua;
-}

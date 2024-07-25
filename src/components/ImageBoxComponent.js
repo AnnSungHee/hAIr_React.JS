@@ -65,10 +65,15 @@ const ImageBoxComponent = ({ label, onImageUpload, imageUrl }) => {
   return (
     <>
       <div className='canvasBox'>
-        <canvas ref={canvasRef} width="400" height="400"></canvas>
+        <div>{label}</div>
+        <canvas ref={canvasRef} width="300" height="300"></canvas>
         <span className='btnBox'>
+          <button onClick={() => setShowWebcam(true)}>
+            <img src="/camera.png" alt="" />
+          </button>
+
           <button onClick={() => fileInputRef.current.click()}>
-            <img src="/images/components/ImageBoxComponent/folder.svg" alt="" />
+            <img src="/folder.png" alt="" />
           </button>
           <input
             type="file"
@@ -76,11 +81,7 @@ const ImageBoxComponent = ({ label, onImageUpload, imageUrl }) => {
             ref={fileInputRef}
             onChange={handleFileInput}
           />
-          <button onClick={() => setShowWebcam(true)}>
-            <img src="/images/components/ImageBoxComponent/camera.svg" alt="" />
-          </button>
         </span>
-        <div>{label}</div>
       </div>
       {showWebcam && <WebCamModalComponent onCapture={handleWebcamCapture} onClose={() => setShowWebcam(false)} />}
     </>

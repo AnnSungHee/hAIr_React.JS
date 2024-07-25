@@ -1,78 +1,95 @@
 .inputOutputBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 60px;
-    margin-top: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 140px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 100px;
+}
+
+.imgBoxContainer {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.resultImgBox {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  border: 1px #BB9E7D solid;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultImgBox img {
+  position: absolute;
+  width: 32px;
+  right: 12px;
+  bottom: 12px;
+  cursor: pointer;
+}
+
+.resultImgBox .loadingStat {
+  font-family: 'Kadwa', serif;
+  position: absolute;
+  font-size: 72px;
+  color: #A58D78;
+  top: -84px;
+  right: -48px;
+}
+
+.resultImgBox .loadingStat span {
+  font-size: 36px;
+  color: #878988;
+}
+
+.resultImgBox .loadingTxt {
+  position: absolute;
+  font-size: 24px;
+  padding-bottom: 4px;
+  background: linear-gradient(90deg, #A58D78 0%, #6D523A 63%, #A48B76 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 100%;
+  animation: gradientMove 1.5s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 0%;
   }
-  
-  .imgBoxContainer {
-    display: flex;
-    justify-content: center;
-    gap: 120px;
+  100% {
+    background-position: 100% 0%;
   }
-  
-  .applyBtn {
-    background-color: rgb(56, 55, 55);
-    color: rgb(226, 220, 220);
-    padding: 16px 24px;
-    border-radius: 12px;
-    cursor: pointer;
-  }
-  
-  .resultImgBox {
-    background-color: white;
-    width: 600px;
-    height: 600px;
-    border: 1px black solid;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .resultImgBox > img {
-    width: 90%;
-    height: 90%;
-    object-fit: cover;
-  }
-  
-  .loading-bar-container {
-    width: 100%;
-    height: 30px;
-    background-color: #e0e0e0;
-    margin-top: 20px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .loading-bar {
-    display: grid;
-    grid-template-columns: repeat(36, 1fr);
-    height: 100%;
-    width: 100%;
-    gap: 2px; /* 블록 사이의 간격 추가 */
-  }
-  
-  .loading-block {
-    width: 100%;
-    height: 100%;
-    background-color: #e0e0e0; /* 기본 배경색 */
-  }
-  
-  .loading-block.active {
-    background-color: #66A5FB; /* 활성화된 블록의 배경색 */
-  }
-  
-  .loading-text {
-    position: absolute;
-    z-index: 1;
-    color: #fff;
-    font-weight: bold;
-  }
-  
+}
+
+.diamonds {
+  display: flex;
+  justify-content: center;
+  gap: 180px;
+}
+
+.diamonds > div {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #C1B68F;
+  transform: rotate(45deg);
+}
+
+.glitteringDaimond {
+  background-color: #A58D78;
+}
+
+.diamondImgContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  gap: 84px;
+}

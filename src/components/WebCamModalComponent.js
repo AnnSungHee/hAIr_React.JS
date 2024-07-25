@@ -40,8 +40,8 @@ const WebCamModalComponent = ({ onCapture, onClose }) => {
     <div className='webcamModalContainer'>
       <div className='webcamModalContent'>
         <video ref={videoRef} width="640" height="480" autoPlay></video>
-        <button onClick={handleCapture}>찰칵✨</button>
-        <button onClick={onClose}>닫기</button>
+        <button onClick={handleCapture}><img src="/camera.png" alt="" /></button>
+        <button className='cameraExitBtn' onClick={onClose}>✖</button>
         <canvas ref={canvasRef} width="640" height="480" style={{ display: 'none' }}></canvas>
       </div>
     </div>
