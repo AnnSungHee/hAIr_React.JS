@@ -10,6 +10,9 @@ const AiHairstylePage = () => {
   const resultCanvasRef = useRef(null);
   const loadingImgRef = useRef(null);
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(36);
+  const [activeBlocks, setActiveBlocks] = useState(0);
 
   useEffect(() => {
     if (location.state && location.state.imageSrc) {
@@ -31,9 +34,24 @@ const AiHairstylePage = () => {
       return;
     }
 
+    setLoading(true);
+    setTimeLeft(36);
+    setActiveBlocks(0);
+
     if (loadingImgRef.current) {
       loadingImgRef.current.style.display = 'inline-block';
     }
+
+    const countdown = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(countdown);
+          return 0;
+        }
+        setActiveBlocks(prevBlocks => prevBlocks + 1);
+        return prevTime - 1;
+      });
+    }, 1000);
 
     const formData = new FormData();
     formData.append('face', images.face);
@@ -57,6 +75,7 @@ const AiHairstylePage = () => {
           loadingImgRef.current.style.display = 'none';
         }
         resultCanvasRef.current.style.display = 'block';
+        setLoading(false);
       };
       img.src = URL.createObjectURL(response.data);
     } catch (error) {
@@ -65,7 +84,25 @@ const AiHairstylePage = () => {
       if (loadingImgRef.current) {
         loadingImgRef.current.style.display = 'none';
       }
+      setLoading(false);
     }
+  };
+
+  const calculatePercentage = () => {
+    return ((36 - timeLeft) / 36) * 100;
+  };
+
+  const renderLoadingBlocks = () => {
+    const blocks = [];
+    for (let i = 0; i < 36; i++) {
+      blocks.push(
+        <div
+          key={i}
+          className={`loading-block ${i < activeBlocks ? 'active' : ''}`}
+        ></div>
+      );
+    }
+    return blocks;
   };
 
   return (
@@ -83,6 +120,14 @@ const AiHairstylePage = () => {
         <div className='resultImgBox'>
           <img ref={loadingImgRef} src="/loading.gif" alt="loading" style={{ display: 'none' }} />
           <canvas ref={resultCanvasRef} width={550} height={550} style={{ display: 'none' }}></canvas>
+          {loading && (
+            <div className="loading-bar-container">
+              <div className="loading-bar">
+                {renderLoadingBlocks()}
+              </div>
+              <div className="loading-text">{calculatePercentage().toFixed(2)}%</div>
+            </div>
+          )}
         </div>
       </div>
     </>

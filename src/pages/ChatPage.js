@@ -69,12 +69,11 @@ const ChatPage = () => {
 
         try {
             const response = await axios.post('http://localhost:8080/chat/hairstyle-recommendations', { message });
-            console.log(response.data);
 
             const recommendedStyles = response.data; // 추천 헤어스타일 데이터
             setChatHistory(prevChatHistory => [
                 ...prevChatHistory, 
-                { type: 'bot', text: recommendedStyles.text, images: recommendedStyles.images }
+                { type: 'bot', text: recommendedStyles.response, images: recommendedStyles.images }
             ]);
         } catch (error) {
             console.error('Error fetching recommendations:', error);
