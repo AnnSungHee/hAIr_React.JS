@@ -1,25 +1,31 @@
 .userChatBox{
     display: flex;
     flex-direction: column;
-    align-self: flex-end;
 }
 
 .user{
     color: #F8F8F8;
     font-size: 16px;
     line-height: 26px;
-    border-radius: 999px;
+    border-radius: 40px;
 
     display: inline-block;
     background-color: #BB9E7D;
     max-width: 600px;
 
-    margin-bottom: 12px;
+    margin-top: 6px;
     padding: 12px 20px;
+
+    overflow-wrap: break-word; /* Modern browsers */
+    white-space: pre-wrap; /* Ensures text wraps inside the p tag */
+
+    margin-left: auto;
 }
 
 
 .chatImage{
     width: 256px;
     border-radius: 8px;
+
+    margin-left: auto;
 }

@@ -18,7 +18,13 @@ const AiHairstylePage = () => {
 
   useEffect(() => {
     if (location.state && location.state.imageSrc) {
-      setImages(prevImages => ({ ...prevImages, hair: location.state.imageSrc }));
+      fetch(location.state.imageSrc)
+        .then(response => response.blob())
+        .then(blob => {
+          const file = new File([blob], "hair.jpg", { type: blob.type });
+          setImages(prevImages => ({ ...prevImages, hair: file }));
+        })
+        .catch(error => console.error('Error fetching image:', error));
     }
   }, [location.state]);
 
@@ -121,7 +127,7 @@ const AiHairstylePage = () => {
         <span className='diamondImgContainer'>
           <div className='imgBoxContainer'>
             <ImageBoxComponent label="얼굴" onImageUpload={(file) => handleImageUpload('face', file)} />
-            <ImageBoxComponent label="헤어" onImageUpload={(file) => handleImageUpload('hair', file)} imageUrl={images.hair} />
+            <ImageBoxComponent label="헤어" onImageUpload={(file) => handleImageUpload('hair', file)} imageUrl={images.hair ? URL.createObjectURL(images.hair) : null} />
           </div>
 
           <div className='diamonds'>
