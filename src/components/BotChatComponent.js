@@ -18,12 +18,7 @@ const BotChatComponent = ({ text, images, onImageClick }) => {
 
   return (
     <div className='botChatBox'>
-      <div>
-        <div className='botInfo'>
-          <div className='botImg'><img src="/images/pages/ChatPage/profile.svg" alt="bot profile" /></div>
-          <div className='botName'>chat bot</div>
-        </div>
-      </div>
+      <div className='botImg'><img src="/chatbot.png" alt="bot profile" /></div>
       <p className='bot'>{text}</p>
       {images && images.length > 0 && (
         <div className='hairstyleImagesContainer'>

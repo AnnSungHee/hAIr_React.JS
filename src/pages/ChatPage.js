@@ -71,6 +71,7 @@ const ChatPage = () => {
             const response = await axios.post('http://localhost:8080/chat/hairstyle-recommendations', { message });
 
             const recommendedStyles = response.data; // 추천 헤어스타일 데이터
+            console.log(recommendedStyles.response);
             setChatHistory(prevChatHistory => [
                 ...prevChatHistory, 
                 { type: 'bot', text: recommendedStyles.response, images: recommendedStyles.images }
@@ -91,6 +92,7 @@ const ChatPage = () => {
     return (
         <>
             <HeaderComponent />
+
             <div className='chatBox'>
                 <div className='chatList'>
                     {chatHistory.map((chat, index) => (
@@ -105,24 +107,25 @@ const ChatPage = () => {
                     )}
                 </div>
                 <div className='inputBox'>
+                    <label htmlFor="file-upload" className="fileUploadLabel"><img src="/clip.png" alt="" /></label>
+                    <input id="file-upload" type="file" onChange={handleImageUpload} disabled={isSubmitting} style={{ display: 'none' }} />
+                    
                     <textarea 
                         className='textArea' 
-                        placeholder='메세지를 입력해주세요.' 
+                        placeholder='메세지를 입력해주세요' 
                         disabled={isSubmitting} 
                         ref={textAreaRef} // ref를 textarea에 연결
                     />
+                    
                     <div className='btnArea'>
-                        <img src="/images/pages/ChatPage/enter.svg" alt="send message" 
+                        <img src="/send.png" alt="send message" 
                             onClick={() => {
                                 if (!isSubmitting) handleSendMessage(textAreaRef.current.value);
                             }} 
                             style={{ cursor: isSubmitting ? 'not-allowed' : 'pointer' }} 
                         />
                     </div>
-                    <label htmlFor="file-upload" className="fileUploadLabel">
-                        사진 업로드
-                    </label>
-                    <input id="file-upload" type="file" onChange={handleImageUpload} disabled={isSubmitting} style={{ display: 'none' }} />
+                    
                 </div>
             </div>
         </>

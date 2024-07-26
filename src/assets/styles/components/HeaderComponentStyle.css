@@ -24,6 +24,7 @@
 .linkList a {
     color: inherit; /* 링크 색상을 상속 */
     text-decoration: none; /* 기본 링크 밑줄 제거 */
+    padding: 10px;
 }
 
 .selectedLink {

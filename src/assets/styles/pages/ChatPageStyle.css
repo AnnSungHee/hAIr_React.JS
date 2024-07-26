@@ -1,74 +1,74 @@
+.inputBox{
+    height: 82px;
+    background-color: #E5E7E6;
+    position: relative;
+    display: inline-block;
+    padding: 16px 20px;
+    padding-right: 6px;
+    padding-bottom: 0px;
+    margin-top: 30px;
 
 
-.chatBox{
-    display: flex;
-    flex-direction: column;
+    &>.fileUploadLabel{
+        position: absolute;
+        top: 22px;
+        left: 36px;
+        cursor: pointer;
 
-    
-    min-height: 640px;
-    max-width: 1280px;
-    margin: 0 auto;
-    margin-top: 60px;
+        &>img{
+            width: 16px;
+        }
+    }
+}
+
+.textArea{
+    flex-grow: 1; /* 남은 공간 채우기 */
+    resize: none;
+    box-sizing: border-box;
+    background-color: #F6F6F6;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    padding: 0 48px;
+    line-height: 40px;
+    box-sizing: content-box;
+    margin-right: 10px;
+    font-family: inherit; /* 폰트를 부모 요소와 동일하게 설정 */
+    color: inherit; /* 글자색을 부모 요소와 동일하게 설정 */
+    appearance: none; /* 기본 브라우저 스타일 제거 */
+
+    border-radius: 20px;
+    width: 752px;
+    height: 40px;
 }
 
 
-    .chatList{
-        display: flex;
-        flex-direction: column;
+.btnArea{
+    position: absolute;
+    right: 24px;
+    top: 18px;
+    display: inline-block;
+    border-radius: 999px;
+    background-color: #DFD8D8;
+    padding: 8px 8px;
+    padding-right: 4px;
+
+    &>img{
+        width: 20px;
     }
+}
 
 
 
-    .inputBox{
-        position: relative;
+.chatBox{
+    width: 765px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
 
-        width: 90%;
-
-        max-width: 1280px;
-
-        margin: auto;
-        margin-bottom: 0;
-
-        &>.textArea{
-            width: 100%;
-            max-width: 1280px;
-            resize: none;
-            box-sizing: border-box;
-
-            background-color: #D9D9D9;
-            outline: none;
-            border: none;
-            border-radius: 20px;
-        
-            font-size: 20px;
-        
-            padding: 20px 20px;
-            margin: 60px 0px;
-        }
-        
-        &>.btnArea{
-            position: absolute;
-            right: 20px;
-            top: 76px;
-            cursor: pointer;
-        }
-
-        &>.fileUploadLabel{
-            position: absolute;
-            right: 90px;
-            bottom: 90px;
-            padding: 8px 12px;
-            color: white;
-            background-color: #535e85;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    }
-
-
-    .loading-indicator {
-        text-align: center;
-        margin-top: 20px;
-    }
-    
-    
+.chatList{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}

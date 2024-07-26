@@ -2,31 +2,24 @@
     display: flex;
     flex-direction: column;
     align-self: flex-end;
-    margin-top: 50px;
 }
 
 .user{
-    
-
-    color: #ffffff;
+    color: #F8F8F8;
     font-size: 16px;
     line-height: 26px;
-    border-radius: 12px;
-    border-top-right-radius: 0;
+    border-radius: 999px;
 
     display: inline-block;
-    background-color: #2752E7;
-    max-width: 800px;
+    background-color: #BB9E7D;
+    max-width: 600px;
 
-    box-shadow: 3px 5px 8px #c7c7c7;
-
-    margin-right: 100px;
     margin-bottom: 12px;
     padding: 12px 20px;
 }
 
 
 .chatImage{
-    width: 400px;
-    border-radius: 20px;
+    width: 256px;
+    border-radius: 8px;
 }

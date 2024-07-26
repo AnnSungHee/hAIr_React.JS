@@ -1,40 +1,34 @@
 .botChatBox {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 16px;
     align-self: flex-start;
     margin-top: 20px;
+
+    &>.botImg{
+        margin-left: 50px;
+    
+        &>img{
+            width: 16px;
+            border-radius: 999px;
+            background-color: #ffffff;
+            padding: 4px;
+            box-sizing: content-box;
+        }
+    }
 }
 
-.botInfo {
-    display: flex;
-    gap: 8px;
-}
-
-.botInfo > .botImg {
-    margin-left: 50px;
-}
-
-.botInfo > .botName {
-    font-size: 24px;
-}
 
 .bot {
     font-size: 16px;
-    line-height: 26px;
-    border-radius: 12px;
-    border-top-left-radius: 0;
+    line-height: 250%;
+    color: #565756;
     display: inline-block;
-    background-color: #D9D9D9;
-    max-width: 800px;
-    margin-left: 100px;
-    margin-bottom: 12px;
-    padding: 12px 20px;
-
-    box-shadow: 3px 5px 8px #c7c7c7;
+    max-width: 710px;
 }
 
 .hairstyleImagesContainer {
-    width: 840px;
+    width: 710px;
     display: flex;
     overflow-x: auto;
     overflow-y: hidden; /* y축 스크롤바 숨기기 */
@@ -43,32 +37,32 @@
 
 .hairstyleImage {
     flex: 0 0 auto;
-    width: 200px;
-    height: 200px;
-    margin-right: 12px;
+    width: 256px;
+    height: 256px;
+    margin-right: 24px;
     position: relative;
-}
 
-.hairstyleImage img {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    cursor: pointer;
-}
+    & img{
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        cursor: pointer;
+    }
 
-.hairstyleImage button {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #44444449;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 10px;
-    cursor: pointer;
-
-    &:hover{
-        background-color: #000000a9;
+    & button{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #44444449;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 10px;
+        cursor: pointer;
+    
+        &:hover{
+            background-color: #000000a9;
+        }
     }
 }
