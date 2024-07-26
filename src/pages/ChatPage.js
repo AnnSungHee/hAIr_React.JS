@@ -75,12 +75,15 @@ const ChatPage = () => {
         try {
             const response = await axios.post('http://localhost:8080/chat/hairstyle-recommendations', { message });
 
+            console.log(response);
             console.log(response.data);
-            const { text, images } = response.data;
+
+            const text = response.data.response; // response.data.response에서 텍스트를 직접 가져오기
+            const images = response.data.images; // response.data.images에서 이미지를 가져오기
 
             setChatHistory(prevChatHistory => [
                 ...prevChatHistory,
-                { type: 'bot', text: text, images: images }
+                { type: 'bot', text: text, images: images } // 가져온 이미지들을 함께 넘기기
             ]);
         } catch (error) {
             console.error('Error fetching recommendations:', error);

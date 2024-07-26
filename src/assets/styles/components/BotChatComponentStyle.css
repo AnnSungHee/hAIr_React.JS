@@ -33,6 +33,9 @@
     overflow-x: auto;
     overflow-y: hidden; /* y축 스크롤바 숨기기 */
     padding-top: 16px;
+
+    scrollbar-width: thin; /* 스크롤바의 두께 */
+    scrollbar-color: #A58D78 #f1f1f1; /* 스크롤바 손잡이와 트랙의 색상 */
 }
 
 .hairstyleImage {
