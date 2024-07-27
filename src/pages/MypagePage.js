@@ -41,7 +41,6 @@ const MypagePage = () => {
   return (
     <div>
       <HeaderComponent />
-
       <div className='pageMain'>
         
         <div className='profileBox'>

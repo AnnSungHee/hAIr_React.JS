@@ -82,33 +82,34 @@ const MypageEditPage = () => {
     return (
         <div>
             <HeaderComponent />
-
-            <form onSubmit={handleSubmit} className="profile-form">
-                <h1>개인정보 수정</h1>
-                <div className="form-group">
-                    <label>이메일 주소 *</label>
-                    <input type="text" name="email" value={formData.email} onChange={handleChange} required />
-                </div>
-                <div className="form-group">
-                    <label>닉네임 *</label>
-                    <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-                </div>
-                <div className="form-group">
-                    <label>주소</label>
-                    <input type="text" name="location" value={formData.location} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                    <label>성별 *</label>
-                    <div className="gender-options">
-                        <label><input type="radio" name="gender" value="male" checked={formData.gender === 'male'} onChange={handleChange} /> 남성</label>
-                        <label><input type="radio" name="gender" value="female" checked={formData.gender === 'female'} onChange={handleChange} /> 여성</label>
+            <div className='container'>
+                <form onSubmit={handleSubmit} className="profile-form">
+                    <h1>개인정보 수정</h1>
+                    <div className="form-group">
+                        <label>이메일 주소 *</label>
+                        <input type="text" name="email" value={formData.email} onChange={handleChange} required />
                     </div>
-                </div>
-                <div className="form-actions">
-                    <button type="submit" className="save-button">저장</button>
-                    <button type="button" className="cancel-button" onClick={handleCancel}>취소</button>
-                </div>
-            </form>
+                    <div className="form-group">
+                        <label>닉네임 *</label>
+                        <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label>주소</label>
+                        <input type="text" name="location" value={formData.location} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>성별 *</label>
+                        <div className="gender-options">
+                            <label><input type="radio" name="gender" value="male" checked={formData.gender === 'male'} onChange={handleChange} /> 남성</label>
+                            <label><input type="radio" name="gender" value="female" checked={formData.gender === 'female'} onChange={handleChange} /> 여성</label>
+                        </div>
+                    </div>
+                    <div className="form-actions">
+                        <button type="submit" className="save-button">저장</button>
+                        <button type="button" className="cancel-button" onClick={handleCancel}>취소</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

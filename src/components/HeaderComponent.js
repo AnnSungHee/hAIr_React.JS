@@ -62,6 +62,14 @@ const HeaderComponent = () => {
                             Mypage
                         </Link>
                     </li>
+                    <li>
+                        <Link 
+                            to="/style-recommendation" 
+                            className={isActive('/mypage') ? 'selectedLink' : ''}
+                        >
+                            Recommendation
+                        </Link>
+                    </li>
                     {token ? (
                         <li>
                             <Link onClick={handleLogout} style={{ cursor: 'pointer' }}>
@@ -109,6 +117,14 @@ const HeaderComponent = () => {
                     >
                         Mypage
                     </Link>
+                </li>
+                <li>
+                        <Link 
+                            to="/style-recommendation" 
+                            className={isActive('/mypage') ? 'selectedLink' : ''}
+                        >
+                            Recommendation
+                        </Link>
                 </li>
                 {token ? (
                     <li>
