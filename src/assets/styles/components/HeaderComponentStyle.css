@@ -9,11 +9,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 120px;
+    padding: 20px 60px;
 }
 
 .logo {
-    height: 120px;
+    height: 60px;
 }
 
 .linkList {
@@ -23,18 +23,11 @@
     display: flex;
     gap: 44px;
     list-style: none;
-    transition: max-height 0.3s ease-in-out;
-    max-height: none; /* 기본적으로 숨김 */
-    overflow: visible;
-}
-
-.linkList.open {
-    max-height: 300px; /* 메뉴가 열릴 때 높이 설정 */
 }
 
 .linkList a {
-    color: inherit; /* 링크 색상을 상속 */
-    text-decoration: none; /* 기본 링크 밑줄 제거 */
+    color: inherit;
+    text-decoration: none;
     padding: 10px;
 }
 
@@ -43,14 +36,42 @@
     border-bottom: 3px solid #A58D78;
 }
 
-.menuToggle {
-    display: none; /* 기본적으로 숨김 */
-    flex-direction: column;
-    cursor: pointer;
+.mobileMenu {
+    display: none;
+    color: #4A4C4C;
+    font-size: 24px;
+    font-weight: bold;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.5rem 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
 }
 
-.menuToggle.open .bar {
-    background-color: #A58D78;
+.mobileMenu.open {
+    max-height: 300px;
+}
+
+.mobileMenu li {
+    padding: 1rem 1rem;
+}
+
+.mobileMenu a {
+    color: inherit;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.mobileMenu .selectedLink {
+    color: #A58D78 !important;
+    border-bottom: 3px solid #A58D78;
+}
+
+.menuToggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
 }
 
 .menuToggle .bar {
@@ -61,53 +82,20 @@
     transition: 0.4s;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
     .headerContent {
-        padding: 20px 60px;
-    }
-
-    .logo {
-        height: 80px;
+        padding: 0.5rem 1.5rem;
     }
 
     .linkList {
-        font-size: 20px;
-        gap: 30px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .headerContent {
-        flex-direction: row; /* 수평 정렬 유지 */
-        align-items: center; /* 수직 정렬 유지 */
-        justify-content: auto; /* 로고와 햄버거 메뉴가 좌우에 위치하도록 설정 */
-        padding: 20px;
-    }
-
-    .logo {
-        height: 60px;
-        margin-bottom: 20px;
+        display: none;
     }
 
     .menuToggle {
-        display: flex; /* 작은 화면에서는 햄버거 메뉴 보이기 */
-        margin-left: auto; /* 오른쪽 끝으로 이동 */
+        display: flex;
     }
 
-    .linkList {
-        flex-direction: column;
-        align-items: flex-start;
-        font-size: 18px;
-        gap: 20px;
-        max-height: 0; /* 기본적으로 숨김 */
-        overflow: hidden;
-    }
-
-    .linkList.open {
-        max-height: 300px; /* 메뉴가 열릴 때 높이 설정 */
-    }
-
-    .linkList a {
-        padding: 5px;
+    .mobileMenu {
+        display: block;
     }
 }
