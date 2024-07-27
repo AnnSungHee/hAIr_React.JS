@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import HeaderComponent from '../components/HeaderComponent';
@@ -8,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 const MypageEditPage = () => {
     const [formData, setFormData] = useState({
         email: '',
-        // password: '',
         username: '',
         location: '',
         gender: ''
@@ -19,7 +17,6 @@ const MypageEditPage = () => {
     
 
     useEffect(() => {
-
         const userId = localStorage.getItem("id");
 
         axios.get(`http://localhost:8080/member/${userId}`)
@@ -27,7 +24,6 @@ const MypageEditPage = () => {
                 const data = response.data;
                 setFormData({
                     email: data.email,
-                    // password: data.password,
                     username: data.nickName,
                     location: data.memberProfile.address.city,
                     gender: data.gender
@@ -51,10 +47,8 @@ const MypageEditPage = () => {
 
         const userId = localStorage.getItem("id");
 
-
         const formPayload = new FormData();
         formPayload.append('email', formData.email);
-        // formPayload.append('password', formData.password);
         formPayload.append('nickName', formData.username);
         formPayload.append('city', formData.location);
         formPayload.append('gender', formData.gender);
@@ -65,11 +59,16 @@ const MypageEditPage = () => {
             if (response.status === 200) {
                 console.log('Form submitted successfully');
                 alert("수정이 완료되었습니다.");
-                navigate("/mypage")
+                
+                // localStorage 업데이트
+                localStorage.setItem('nickName', formData.username);
+                localStorage.setItem('gender', formData.gender);
+
+                navigate("/mypage");
             } else {
                 console.error('Form submission failed');
                 alert("수정에 실패하였습니다.");
-                navigate("/mypage")
+                navigate("/mypage");
             }
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -90,10 +89,6 @@ const MypageEditPage = () => {
                     <label>이메일 주소 *</label>
                     <input type="text" name="email" value={formData.email} onChange={handleChange} required />
                 </div>
-                {/* <div className="form-group">
-                    <label>비밀번호*</label>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-                </div> */}
                 <div className="form-group">
                     <label>닉네임 *</label>
                     <input type="text" name="username" value={formData.username} onChange={handleChange} required />

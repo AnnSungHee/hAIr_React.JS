@@ -9,6 +9,7 @@ import MypageEditPage from './pages/MypageEditPage';
 import JoinPage from './pages/JoinPage';
 import SignInPage from './pages/SignInPage';
 import ChatPage from './pages/ChatPage';
+import StyleRecommendationPage from './pages/StyleRecommendationPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/join" element={<JoinPage />} />
       <Route path="/sign-in" element={<SignInPage />} />
       <Route path="/chatpage" element={<ChatPage />} />
+      <Route path="/style-recommendation" element={<StyleRecommendationPage />} />
     </Routes>
   );
 }
