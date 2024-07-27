@@ -20,7 +20,7 @@ const HeaderComponent = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
         localStorage.removeItem('nickName');
-        
+        localStorage.removeItem('gender');
 
         alert('로그아웃이 성공적으로 완료되었습니다.');
         navigate('/');  // 로그아웃 후 홈 페이지로 리디렉션 
