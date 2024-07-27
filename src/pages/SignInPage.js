@@ -34,6 +34,7 @@ const SignInPage = () => {
                 localStorage.setItem("token", response.data.token)
                 localStorage.setItem("id", response.data.id)
                 localStorage.setItem("nickName", response.data.nickName)
+                localStorage.setItem("gender", response.data.gender)
                 alert('로그인이 성공적으로 완료되었습니다.');
                 navigate('/');  
             } else {
