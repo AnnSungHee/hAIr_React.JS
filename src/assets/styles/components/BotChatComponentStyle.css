@@ -1,17 +1,17 @@
 .botChatBox {
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 16px;
     align-self: flex-start;
-    margin-top: 20px;
 
     &>.botImg{
         margin-left: 50px;
+        margin-top: 8px;
     
         &>img{
-            width: 16px;
-            border-radius: 999px;
-            background-color: #ffffff;
+            width: 20px;
+            border-radius: 8px;
+            transform: rotate(347deg);
             padding: 4px;
             box-sizing: content-box;
         }
@@ -24,7 +24,7 @@
     line-height: 250%;
     color: #565756;
     display: inline-block;
-    max-width: 710px;
+    max-width: 675px;
 }
 
 .hairstyleImagesContainer {
@@ -32,7 +32,10 @@
     display: flex;
     overflow-x: auto;
     overflow-y: hidden; /* y축 스크롤바 숨기기 */
-    padding-left: 100px;
+    padding-top: 16px;
+
+    scrollbar-width: thin; /* 스크롤바의 두께 */
+    scrollbar-color: #A58D78 #f1f1f1; /* 스크롤바 손잡이와 트랙의 색상 */
 }
 
 .hairstyleImage {
@@ -65,4 +68,10 @@
             background-color: #000000a9;
         }
     }
+}
+
+.botTxtNImgs{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }

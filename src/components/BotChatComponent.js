@@ -19,17 +19,19 @@ const BotChatComponent = ({ text, images, onImageClick }) => {
   return (
     <div className='botChatBox'>
       <div className='botImg'><img src="/chatbot.png" alt="bot profile" /></div>
-      <p className='bot'>{text}</p>
-      {images && images.length > 0 && (
-        <div className='hairstyleImagesContainer'>
-          {images.map((img, index) => (
-            <div key={index} className='hairstyleImage'>
-              <img src={img} alt={`hairstyle-${index}`} onClick={() => handleImageClick(img)} />
-              <button onClick={() => onImageClick(img)}>적용하기</button>
-            </div>
-          ))}
-        </div>
-      )}
+      <span className='botTxtNImgs'>
+        <p className='bot'>{text}</p>
+        {images && images.length > 0 && (
+          <div className='hairstyleImagesContainer'>
+            {images.map((img, index) => (
+              <div key={index} className='hairstyleImage'>
+                <img src={img} alt={`hairstyle-${index}`} onClick={() => handleImageClick(img)} />
+                <button onClick={() => onImageClick(img)}>적용하기</button>
+              </div>
+            ))}
+          </div>
+        )}
+      </span>
 
       <ImageModalComponent isOpen={isModalOpen} onClose={handleModalClose}>
         {selectedImage && <img src={selectedImage} alt="Selected hairstyle" className="modal-image" />}

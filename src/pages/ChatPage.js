@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent';
 import '../assets/styles/pages/ChatPageStyle.css';
@@ -11,10 +11,18 @@ const ChatPage = () => {
     const [chatHistory, setChatHistory] = useState([
         { type: 'bot', text: 'hAIr 상담소에 오신 것을 환영합니다. 헤어스타일 상담을 위해 고객님의 사진을 올려주세요.' }
     ]);
-    const [isSubmitting, setIsSubmitting] = useState(false); // 요청 상태를 추적하기 위한 상태
-    const [isLoading, setIsLoading] = useState(false); // 로딩 상태를 추적하기 위한 상태
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const textAreaRef = useRef(null); // textarea에 대한 ref
+    const textAreaRef = useRef(null);
+    const chatListRef = useRef(null);
+    const lastMessageRef = useRef(null);
+
+    useEffect(() => {
+        if (lastMessageRef.current) {
+            lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [chatHistory, isLoading]);
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
@@ -23,14 +31,13 @@ const ChatPage = () => {
         const formData = new FormData();
         formData.append('image', file);
 
-        // 이미지 업로드 메시지를 먼저 추가
         setChatHistory(prevChatHistory => [
             ...prevChatHistory,
             { type: 'user', image: file }
         ]);
 
-        setIsSubmitting(true); // 서버에 요청을 보내기 전에 입력을 막음
-        setIsLoading(true); // 로딩 상태 시작
+        setIsSubmitting(true);
+        setIsLoading(true);
 
         try {
             const response = await axios.post('http://localhost:8080/chat/face-analysis', formData, {
@@ -39,7 +46,6 @@ const ChatPage = () => {
                 },
             });
 
-            // 서버 응답이 성공적으로 도착했을 때 봇 메시지를 추가
             setChatHistory(prevChatHistory => [
                 ...prevChatHistory,
                 { type: 'bot', text: '고객님의 얼굴을 분석완료하였습니다. 원하시는 헤어스타일이 있나요?' }
@@ -47,46 +53,49 @@ const ChatPage = () => {
         } catch (error) {
             console.error('Error uploading image:', error);
 
-            // 서버 응답이 실패했을 때의 메시지를 추가할 수도 있습니다.
             setChatHistory(prevChatHistory => [
                 ...prevChatHistory,
                 { type: 'bot', text: '사진 업로드에 실패했습니다. 다시 시도해주세요.' }
             ]);
         } finally {
-            setIsSubmitting(false); // 서버 응답을 받으면 입력을 다시 허용
-            setIsLoading(false); // 로딩 상태 종료
+            setIsSubmitting(false);
+            setIsLoading(false);
         }
     };
 
     const handleSendMessage = async (message) => {
         setChatHistory(prevChatHistory => [
-            ...prevChatHistory, 
+            ...prevChatHistory,
             { type: 'user', text: message }
         ]);
 
-        setIsSubmitting(true); // 서버에 요청을 보내기 전에 입력을 막음
-        setIsLoading(true); // 로딩 상태 시작
+        setIsSubmitting(true);
+        setIsLoading(true);
 
         try {
             const response = await axios.post('http://localhost:8080/chat/hairstyle-recommendations', { message });
 
-            const recommendedStyles = response.data; // 추천 헤어스타일 데이터
-            console.log(recommendedStyles.response);
+            console.log(response);
+            console.log(response.data);
+
+            const text = response.data.response; // response.data.response에서 텍스트를 직접 가져오기
+            const images = response.data.images; // response.data.images에서 이미지를 가져오기
+
             setChatHistory(prevChatHistory => [
-                ...prevChatHistory, 
-                { type: 'bot', text: recommendedStyles.response, images: recommendedStyles.images }
+                ...prevChatHistory,
+                { type: 'bot', text: text, images: images } // 가져온 이미지들을 함께 넘기기
             ]);
         } catch (error) {
             console.error('Error fetching recommendations:', error);
         } finally {
-            setIsSubmitting(false); // 서버 응답을 받으면 입력을 다시 허용
-            setIsLoading(false); // 로딩 상태 종료
-            textAreaRef.current.value = ''; // textarea 비우기
+            setIsSubmitting(false);
+            setIsLoading(false);
+            textAreaRef.current.value = '';
         }
     };
 
-    const handleImageClick = (imageSrc) => {
-        navigate('/ai-hairstyle', { state: { imageSrc } });
+    const handleImageClick = (imageSrc, imageFile) => {
+        navigate('/ai-hairstyle', { state: { imageSrc, imageFile } });
     };
 
     return (
@@ -94,11 +103,14 @@ const ChatPage = () => {
             <HeaderComponent />
 
             <div className='chatBox'>
-                <div className='chatList'>
+                <div className='chatList' ref={chatListRef}>
                     {chatHistory.map((chat, index) => (
-                        chat.type === 'bot' ? 
-                        <BotChatComponent key={index} text={chat.text} images={chat.images} onImageClick={handleImageClick} /> : 
-                        <UserChatComponent key={index} text={chat.text} image={chat.image} />
+                        <div key={index} ref={index === chatHistory.length - 1 ? lastMessageRef : null}>
+                            {chat.type === 'bot' ? 
+                                <BotChatComponent key={index} text={chat.text} images={chat.images} onImageClick={(imageSrc) => handleImageClick(imageSrc, chat.image)} /> : 
+                                <UserChatComponent key={index} text={chat.text} image={chat.image} />
+                            }
+                        </div>
                     ))}
                     {isLoading && (
                         <div className="loading-indicator">
@@ -114,7 +126,7 @@ const ChatPage = () => {
                         className='textArea' 
                         placeholder='메세지를 입력해주세요' 
                         disabled={isSubmitting} 
-                        ref={textAreaRef} // ref를 textarea에 연결
+                        ref={textAreaRef}
                     />
                     
                     <div className='btnArea'>
@@ -125,7 +137,6 @@ const ChatPage = () => {
                             style={{ cursor: isSubmitting ? 'not-allowed' : 'pointer' }} 
                         />
                     </div>
-                    
                 </div>
             </div>
         </>
