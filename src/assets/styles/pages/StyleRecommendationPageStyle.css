@@ -1,4 +1,4 @@
-.ImageBoxComponentBox{
+.ImageBoxComponentBox {
     width: 324px;
 }
 
@@ -11,47 +11,98 @@ select {
     color: #A58D78;
     text-align: center;
     background-color: transparent;
-
-    &>option{
-        text-align: center;
-    }
 }
-  
-  
 
-.selectBoxList{
+.selectBoxList {
     display: flex;
     gap: 40px;
 }
 
-.imgSelectBoxContainer{
+.imgSelectBoxContainer {
     display: flex;
     flex-direction: column;
     gap: 60px;
     align-items: center;
 }
 
-
-.fullContainer{
+.fullContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 120px;
-
     padding: 60px 0;
 }
 
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
 
-.aiSimulationBtn{
-    color: #191919;
-    font-size: 14px;
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    display: flex;
+    flex-direction: row; /* 가로로 배치 */
+    justify-content: space-around; /* 이미지 간격 조절 */
+    align-items: center;
+    position: relative; /* 닫기 버튼을 우측 상단에 배치하기 위해 */
 
-    padding: 8px 12px;
-    border-radius: 8px;
-    background-color: #ffffff77;
+    & img {
+        max-width: 150px; /* 이미지 크기 조절 */
+        height: auto;
+        margin: 5px;
+        border-radius: 8px;
+        border: 1px solid #A58D78;
+    }
+}
+
+.close {
+    position: absolute; /* 닫기 버튼을 절대 위치로 설정 */
+    top: 10px; /* 상단에서 10px */
+    right: 10px; /* 우측에서 10px */
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
     cursor: pointer;
+}
+
+
+
+.simulation-button {
+    display: block; /* 블록 요소로 설정 */
+    width: 100px; /* 버튼 너비 */
+    margin: 5px auto; /* 중앙 정렬 */
+    padding: 10px;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.7); /* 투명한 흰색 테두리 */
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #8d8585; /* 텍스트 색상 */
+    background-color: transparent; /* 배경색 제거 */
+    border: 1px solid #8d8585;
+    border-radius: 20px;
+}
+
+.simulation-button:hover {
+    color: #191919; /* 텍스트 색상 */
+    border: 1px solid #191919;
 }

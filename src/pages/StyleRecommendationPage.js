@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ImageBoxComponent from '../components/ImageBoxComponent';
 import '../assets/styles/pages/StyleRecommendationPageStyle.css';
 import '../assets/styles/components/ImageBoxComponentStyle.css';
+import HeaderComponent from '../components/HeaderComponent';
 
 const hairStyles = {
   "여성": {
@@ -54,68 +56,161 @@ const StyleRecommendationPage = () => {
   const [selectedGender, setSelectedGender] = useState('');
   const [selectedLength, setSelectedLength] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [genderBgColor, setGenderBgColor] = useState('transparent');
+  const [lengthBgColor, setLengthBgColor] = useState('transparent');
+  const [styleBgColor, setStyleBgColor] = useState('transparent');
+  const [genderTextColor, setGenderTextColor] = useState('#A58D78');
+  const [lengthTextColor, setLengthTextColor] = useState('#A58D78');
+  const [styleTextColor, setStyleTextColor] = useState('#A58D78');
+  const [imageUrl, setImageUrl] = useState(''); // 추가된 state
+  const [modalOpen, setModalOpen] = useState(false); // 모달 열림 상태
+  const [responseImages, setResponseImages] = useState([]); // 응답 이미지들
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedGender && selectedLength && selectedStyle && imageUrl) {
+      handleSubmit();
+    }
+  }, [selectedGender, selectedLength, selectedStyle, imageUrl]);
 
   const handleGenderChange = (event) => {
     setSelectedGender(event.target.value);
     setSelectedLength('');
     setSelectedStyle('');
+    setGenderBgColor(event.target.value ? '#A58D78' : 'transparent');
+    setGenderTextColor(event.target.value ? '#ffffff' : '#A58D78');
+    setLengthBgColor('transparent');
+    setLengthTextColor('#A58D78');
+    setStyleBgColor('transparent');
+    setStyleTextColor('#A58D78');
   };
 
   const handleLengthChange = (event) => {
     setSelectedLength(event.target.value);
     setSelectedStyle('');
+    setLengthBgColor(event.target.value ? '#A58D78' : 'transparent');
+    setLengthTextColor(event.target.value ? '#ffffff' : '#A58D78');
+    setStyleBgColor('transparent');
+    setStyleTextColor('#A58D78');
   };
 
   const handleStyleChange = (event) => {
     setSelectedStyle(event.target.value);
+    setStyleBgColor(event.target.value ? '#A58D78' : 'transparent');
+    setStyleTextColor(event.target.value ? '#ffffff' : '#A58D78');
   };
 
   const handleImageUpload = (file) => {
     const reader = new FileReader();
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
+    reader.onload = (event) => {
+      setImageUrl(event.target.result);
     };
     reader.readAsDataURL(file);
   };
 
+  const handleSimulationClick = (imageSrc) => {
+    navigate('/ai-hairstyle', { state: { imageSrc } });
+  };
+
+  const handleSubmit = async () => {
+    const canvas = document.querySelector('.ImageBoxComponentBox canvas');
+    canvas.toBlob(async (blob) => {
+      const formData = new FormData();
+      formData.append('gender', selectedGender);
+      formData.append('length', selectedLength);
+      formData.append('style', selectedStyle);
+      formData.append('face', blob, 'face.png');
+
+      try {
+        const response = await fetch('http://localhost:8080/recommend', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+        console.log('Response:', result);
+        if (result.length > 0) {
+          setResponseImages(result); // 이미지 배열을 상태에 저장
+          setModalOpen(true); // 모달 열기
+        } else {
+          console.error('No images returned from the server.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }, 'image/png');
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
-      <div className='ImageBoxComponentBox'>
-        <ImageBoxComponent onImageUpload={handleImageUpload} imageUrl={imageUrl} />
-      </div>
-      <div>
-        <select value={selectedGender} onChange={handleGenderChange}>
-          <option value="">성별을 선택하세요</option>
-          {Object.keys(hairStyles).map(gender => (
-            <option key={gender} value={gender}>{gender}</option>
-          ))}
-        </select>
+      <HeaderComponent />
+      <div className='fullContainer'>
+        <div className='imgSelectBoxContainer'>
+          <div className='ImageBoxComponentBox'>
+            <ImageBoxComponent onImageUpload={handleImageUpload} imageUrl={imageUrl} />
+          </div>
+          <div className='selectBoxList'>
+            <select 
+              value={selectedGender} 
+              onChange={handleGenderChange} 
+              style={{ backgroundColor: genderBgColor, color: genderTextColor }}
+            >
+              <option value="">성별을 선택하세요</option>
+              {Object.keys(hairStyles).map(gender => (
+                <option key={gender} value={gender}>{gender}</option>
+              ))}
+            </select>
 
-        {selectedGender && (
-          <select value={selectedLength} onChange={handleLengthChange}>
-            <option value="">길이를 선택하세요</option>
-            {Object.keys(hairStyles[selectedGender]).map(length => (
-              <option key={length} value={length}>{length}</option>
-            ))}
-          </select>
+            {selectedGender && (
+              <select 
+                value={selectedLength} 
+                onChange={handleLengthChange} 
+                style={{ backgroundColor: lengthBgColor, color: lengthTextColor }}
+              >
+                <option value="">길이를 선택하세요</option>
+                {Object.keys(hairStyles[selectedGender]).map(length => (
+                  <option key={length} value={length}>{length}</option>
+                ))}
+              </select>
+            )}
+
+            {selectedLength && (
+              <select 
+                value={selectedStyle} 
+                onChange={handleStyleChange} 
+                style={{ backgroundColor: styleBgColor, color: styleTextColor }}
+              >
+                <option value="">스타일을 선택하세요</option>
+                {hairStyles[selectedGender][selectedLength].map(style => (
+                  <option key={style} value={style}>{style}</option>
+                ))}
+              </select>
+            )}
+          </div>
+        </div>
+
+        {modalOpen && (
+          <div className='modal'>
+            <div className='modal-content'>
+              <span className='close' onClick={closeModal}>&times;</span>
+              {responseImages.length > 0 ? (
+                responseImages.map((image, index) => (
+                  <div key={index}>
+                    <img src={`data:image/png;base64,${image}`} alt={`Recommendation ${index + 1}`} />
+                    <div className="simulation-button" onClick={() => handleSimulationClick(`data:image/png;base64,${image}`)}>시뮬레이션</div>
+                  </div>
+                ))
+              ) : (
+                <p>No recommendations available.</p>
+              )}
+            </div>
+          </div>
         )}
-
-        {selectedLength && (
-          <select value={selectedStyle} onChange={handleStyleChange}>
-            <option value="">스타일을 선택하세요</option>
-            {hairStyles[selectedGender][selectedLength].map(style => (
-              <option key={style} value={style}>{style}</option>
-            ))}
-          </select>
-        )}
-      </div>
-
-      <div className='resultImgBox'>
-        <canvas width={500} height={500} style={{ display: 'none' }}></canvas>
-        <div className='loadingStat'>0/<span>100</span></div>
-        <div className='loadingTxt' style={{ display: 'none' }}>Loading..</div>
-        <div>AI 시뮬레이션</div>
       </div>
     </>
   );

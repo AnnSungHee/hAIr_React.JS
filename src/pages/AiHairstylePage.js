@@ -18,13 +18,16 @@ const AiHairstylePage = () => {
 
   useEffect(() => {
     if (location.state && location.state.imageSrc) {
-      fetch(location.state.imageSrc)
-        .then(response => response.blob())
-        .then(blob => {
-          const file = new File([blob], "hair.jpg", { type: blob.type });
-          setImages(prevImages => ({ ...prevImages, hair: file }));
-        })
-        .catch(error => console.error('Error fetching image:', error));
+      const base64String = location.state.imageSrc.split(',')[1];
+      const binaryString = window.atob(base64String);
+      const len = binaryString.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      const blob = new Blob([bytes], { type: 'image/png' });
+      const file = new File([blob], "hair.png", { type: "image/png" });
+      setImages(prevImages => ({ ...prevImages, hair: file }));
     }
   }, [location.state]);
 
