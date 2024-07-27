@@ -1,135 +1,177 @@
-.engScript{
-    color: #A58D78;
-    font-size: 96px;
-    font-weight: bold;
-    line-height: 70%;
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
-    &>span{
-        font-size: 48px;
-    }
-
-}
-
-    .engScript1{
-        width: 633px;
-        /* height: 191px; */
-        word-break: break-all;
-    }
-
-    .engScript2{
-        width: 478px;
-        text-align: end;
-    }
-
-
-
-.korScript{
-    
-    width: 720px;
-    color: #4A4C4C;
-    font-size: 24px;
-}
-
-.tryChatBtn{
-    margin-top: 24px;
-
-    &>a{
-        color: #A58D78;
-        font-size: 24px;
-        border-radius: 60px;
-        border: 1px solid #A58D78;
-        padding: 16px 40px;
-        text-decoration: none;
-    }
-}
-
-
-
-.bannerImg1{
-    width: 431px;
-}
-
-.bannerImg2{
-    width: 402px;
-}
-
-.bannerImg3{
-    width: 1076px;
-    transform: translateX(-500px);
-}
-
-.pageIndicator{
-    /* height: 100%; */
-    transform: translateX(-150px);
-    font-family: 'Kadwa', serif;
-    color: #A58D78;
-    font-size: 72px;
-
-    &>span{
-        color: #878988;
-        font-size: 36px;
-    }
-}
-
-    .pageIndicator3{
-        transform: translateX(-780px);
-    }
-
-.iconList{
-    display: flex;
-    justify-content: end;
-    gap: 40px;
-
-    &>img{
-        width: 32px;
-    }
-
-    &>img[src="/facebook.png"]{
-        width: 16px;
-        height: 32px;
-    }
-}
-
-
-
-
-.textBox{
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 가로 스크롤 제거 */
+    width: 100%;
     height: 100%;
-    display: flex;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.engScript {
+  color: #A58D78;
+  font-size: 96px;
+  font-weight: bold;
+  line-height: 70%;
+}
+
+.engScript span {
+  font-size: 48px;
+}
+
+.korScript {
+  color: #4A4C4C;
+  font-size: 1.2rem;
+  margin-top: 34px;
+  margin-bottom: 34px;
+  font-weight: 500;
+}
+
+.tryChatBtn {
+  margin-top: 24px;
+}
+
+.tryChatBtn a {
+  color: #A58D78;
+  font-size: 24px;
+  border-radius: 60px;
+  border: 1px solid #A58D78;
+  padding: 16px 40px;
+  text-decoration: none;
+}
+
+.bannerImg {
+  width: auto;
+  max-width: 100%;
+  height: auto; /* 자동 높이 설정 */
+  max-height: 500px; /* 최대 높이 설정 */
+  object-fit: cover; /* 이미지 비율을 유지하며 크기에 맞게 자르기 */
+}
+
+.pageIndicator {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  font-family: 'Kadwa', serif;
+  color: #A58D78;
+  font-size: 72px;
+}
+
+.pageIndicator span {
+  color: #878988;
+  font-size: 36px;
+}
+
+.textBox {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.textNImg {
+  height: 644px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  max-width: 1200px;
+  margin: 0 auto; /* 센터 정렬 */
+  padding: 0 20px; /* 양쪽 여백 */
+}
+
+#main {
+  padding-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+}
+
+.pageNcontents {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.7s ease-in-out;
+  width: 100%; /* 부모 요소 너비를 넘지 않도록 설정 */
+  overflow-x: hidden; /* 가로 스크롤 제거 */
+}
+
+@media screen and (max-width: 1024px) {
+  .engScript {
+    font-size: 64px;
+  }
+
+  .engScript span {
+    font-size: 32px;
+  }
+
+  .korScript {
+    font-size: 20px;
+  }
+
+  .tryChatBtn a {
+    font-size: 20px;
+    padding: 12px 30px;
+  }
+
+  .bannerImg {
+    max-height: 400px;
+  }
+
+  .pageIndicator {
+    font-size: 56px;
+  }
+
+  .pageIndicator span {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .engScript {
+    font-size: 48px;
+  }
+
+  .engScript span {
+    font-size: 24px;
+  }
+
+  .korScript {
+    font-size: 18px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .tryChatBtn a {
+    font-size: 18px;
+    padding: 8px 20px;
+  }
+
+  .bannerImg {
+    width: auto;
+    max-width: 100%;
+    max-height: 300px;
+  }
+
+  .pageIndicator {
+    font-size: 36px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .pageIndicator span {
+    font-size: 18px;
+  }
+
+  .textNImg {
+    height: auto;
     flex-direction: column;
-    justify-content: center;
-    gap: 34px;
-}
-
-.textNImg{
-    height: 644px;
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    gap: 120px;
-}
-
-.pageNcontent{
-    /* min-width: 100%; */
-    display: flex;
-    gap: 0px;
-}
-
-#main{
-    /* padding: 0 208px; */
-    padding-bottom: 28px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 96px;
-    /* justify-content: end; */
-}
-
-
-.pageNcontents{
-    /* overflow: hidden; */
-    display: flex;
-    padding: 0 208px;
-    gap: 308px;
-    transition: transform 0.7s ease-in-out;
+    gap: 40px;
+  }
 }
