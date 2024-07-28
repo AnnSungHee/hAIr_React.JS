@@ -1,82 +1,143 @@
-.inputBox{
+.chatContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 헤더 높이만큼 뺌 */
+    padding-top: 80px; /* 헤더 높이만큼 패딩 추가 */
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.chatBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
     position: relative;
-    margin-top: 30px;
-    padding-bottom: 30px;
-    /* height: 82px;
-    display: inline-block;
-    background-color: #E5E7E6;
-    padding: 16px 20px;
-    padding-right: 6px;
-    padding-bottom: 0px;
-     */
-
-
-    &>.fileUploadLabel{
-        cursor: pointer;
-        position: absolute;
-        top: 24px;
-        left: 20px;
-
-        &>img{
-            width: 16px;
-        }
-    }
 }
 
-.textArea{
-    resize: none;
-    box-sizing: border-box !important;
-    background-color: #F6F6F6;
-    outline: none;
-    border: none;
-    font-size: 16px;
-    padding: 12px 60px;
-    line-height: 24px;
-    box-sizing: content-box;
-    margin-right: 10px;
-    font-family: inherit; /* 폰트를 부모 요소와 동일하게 설정 */
-    color: inherit; /* 글자색을 부모 요소와 동일하게 설정 */
-    appearance: none; /* 기본 브라우저 스타일 제거 */
-
-    border-radius: 20px;
-    
-    width: 804px;
-    /* height: 40px;  */
-
-    scrollbar-width: thin; /* 스크롤바의 두께 */
-    scrollbar-color: #A58D78 #f1f1f1; /* 스크롤바 손잡이와 트랙의 색상 */
-    
+.chatList {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-x: hidden;
+    padding-bottom: 120px; /* inputBox 높이만큼 패딩 추가 */
+    box-sizing: border-box;
 }
 
-
-
-
-.btnArea{
+.inputBox {
+    padding: 10px;
     position: absolute;
-    right: -20px;
-    top: 18px;
-    /* display: inline-block; */
-    border-radius: 999px;
-    background-color: #DFD8D8;
-    padding: 8px 8px;
-    padding-right: 4px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+}
 
-    &>img{
+.inputWrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.fileUploadLabel {
+    cursor: pointer;
+    margin-right: 10px;
+
+    & > img {
         width: 20px;
     }
 }
 
-
-
-.chatBox{
-    width: 765px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
+.textArea {
+    resize: none;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    flex: 1;
+    font-family: inherit;
+    color: inherit;
+    padding: 0;
+    margin-right: 10px;
+    line-height: 24px;
+    min-width: 0;
 }
 
-.chatList{
+.btnArea {
+    background-color: #dfd8d8;
+    padding: 8px 12px;
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
-    gap: 28px;
+    align-items: center;
+    justify-content: center;
+
+    & > img {
+        width: 20px;
+    }
+}
+
+/* 반응형 스타일 추가 */
+@media screen and (max-width: 1200px) {
+    .textArea {
+        font-size: 14px;
+    }
+
+    .btnArea img {
+        width: 18px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .textArea {
+        font-size: 13px;
+    }
+
+    .btnArea img {
+        width: 17px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .textArea {
+        font-size: 12px;
+    }
+
+    .btnArea img {
+        width: 16px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .textArea {
+        font-size: 11px;
+    }
+
+    .btnArea img {
+        width: 14px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .textArea {
+        font-size: 10px;
+    }
+
+    .btnArea img {
+        width: 12px;
+    }
 }
