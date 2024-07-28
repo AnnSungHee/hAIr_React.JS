@@ -1,30 +1,49 @@
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.simulation {
+  margin-top: 8rem;
+}
+
 .inputOutputBox {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: end;
+  align-items: flex-start;
   gap: 140px;
   margin-top: 80px;
-  margin-left: auto;
-  margin-right: auto;
   padding-bottom: 100px;
+  flex-wrap: wrap; /* 화면 크기에 따라 줄 바꿈 허용 */
 }
 
 .imgBoxContainer {
   display: flex;
   justify-content: center;
   gap: 40px;
+  flex-wrap: wrap;
 }
 
 .resultImgBox {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  max-width: 500px;
+  height: auto; /* 높이 자동 조정 */
+  aspect-ratio: 1; /* 정사각형 유지 */
   border: 1px #BB9E7D solid;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.resultImgBox canvas {
+  width: 100%;
+  height: 100%; /* 캔버스가 박스에 맞게 크기 조정 */
 }
 
 .resultImgBox img {
@@ -90,6 +109,66 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-self: center;
-  gap: 84px;
+  align-items: center;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    position: static;
+  }
+
+  .simulation {
+    margin-top: 2rem;
+  }
+  
+
+  .inputOutputBox {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-top: 20px;
+    padding-bottom: 60px;
+  }
+
+  .imgBoxContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .resultImgBox {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1; /* 정사각형 유지 */
+  }
+
+  .resultImgBox .loadingStat {
+    font-size: 48px;
+    top: -60px;
+    right: -24px;
+  }
+
+  .resultImgBox .loadingStat span {
+    font-size: 24px;
+  }
+
+  .resultImgBox .loadingTxt {
+    font-size: 18px;
+  }
+
+  .diamonds {
+    gap: 60px;
+  }
+
+  .diamondImgContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
 }

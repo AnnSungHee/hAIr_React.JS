@@ -125,26 +125,27 @@ const AiHairstylePage = () => {
   return (
     <>
       <HeaderComponent />
+      <div className='simulation'>
+        <div className='inputOutputBox'>
+          <span className='diamondImgContainer'>
+            <div className='imgBoxContainer'>
+              <ImageBoxComponent label="얼굴" onImageUpload={(file) => handleImageUpload('face', file)} />
+              <ImageBoxComponent label="헤어" onImageUpload={(file) => handleImageUpload('hair', file)} imageUrl={images.hair ? URL.createObjectURL(images.hair) : null} />
+            </div>
 
-      <div className='inputOutputBox'>
-        <span className='diamondImgContainer'>
-          <div className='imgBoxContainer'>
-            <ImageBoxComponent label="얼굴" onImageUpload={(file) => handleImageUpload('face', file)} />
-            <ImageBoxComponent label="헤어" onImageUpload={(file) => handleImageUpload('hair', file)} imageUrl={images.hair ? URL.createObjectURL(images.hair) : null} />
+            <div className='diamonds'>
+              {[...Array(4)].map((_, index) => (
+                <div key={index} className={index === activeDiamond ? 'glitteringDaimond' : ''}></div>
+              ))}
+            </div>
+          </span>
+
+          <div className='resultImgBox'>
+            <canvas ref={resultCanvasRef} width={500} height={500} style={{ display: 'none' }}></canvas>
+            <img src="/download.png" alt="" />
+            <div className='loadingStat'>{loadingPercentage.toFixed(0)}/<span>100</span></div>
+            <div className='loadingTxt' ref={loadingTxtRef} style={{ display: 'none' }}>Loading..</div>
           </div>
-
-          <div className='diamonds'>
-            {[...Array(4)].map((_, index) => (
-              <div key={index} className={index === activeDiamond ? 'glitteringDaimond' : ''}></div>
-            ))}
-          </div>
-        </span>
-
-        <div className='resultImgBox'>
-          <canvas ref={resultCanvasRef} width={500} height={500} style={{ display: 'none' }}></canvas>
-          <img src="/download.png" alt="" />
-          <div className='loadingStat'>{loadingPercentage.toFixed(0)}/<span>100</span></div>
-          <div className='loadingTxt' ref={loadingTxtRef} style={{ display: 'none' }}>Loading..</div>
         </div>
       </div>
     </>
