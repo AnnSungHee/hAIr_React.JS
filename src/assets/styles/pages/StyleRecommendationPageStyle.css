@@ -1,5 +1,14 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 .ImageBoxComponentBox {
     width: 324px;
+    max-width: 100%;
 }
 
 select {
@@ -7,15 +16,20 @@ select {
     height: 44px;
     border-radius: 8px;
     border: 1px solid #A58D78;
-    font-size: 20px;
+    font-size: 16px;
     color: #A58D78;
     text-align: center;
     background-color: transparent;
+    max-width: 100%;
+    margin-bottom: 20px; /* 여백 추가 */
 }
 
 .selectBoxList {
     display: flex;
     gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
 }
 
 .imgSelectBoxContainer {
@@ -23,6 +37,7 @@ select {
     flex-direction: column;
     gap: 60px;
     align-items: center;
+    width: 100%;
 }
 
 .fullContainer {
@@ -31,6 +46,7 @@ select {
     align-items: center;
     gap: 120px;
     padding: 60px 0;
+    flex-wrap: wrap;
 }
 
 .modal {
@@ -58,6 +74,7 @@ select {
     justify-content: space-around; /* 이미지 간격 조절 */
     align-items: center;
     position: relative; /* 닫기 버튼을 우측 상단에 배치하기 위해 */
+    flex-wrap: wrap;
 
     & img {
         max-width: 150px; /* 이미지 크기 조절 */
@@ -84,8 +101,6 @@ select {
     cursor: pointer;
 }
 
-
-
 .simulation-button {
     display: block; /* 블록 요소로 설정 */
     width: 100px; /* 버튼 너비 */
@@ -105,4 +120,61 @@ select {
 .simulation-button:hover {
     color: #191919; /* 텍스트 색상 */
     border: 1px solid #191919;
+}
+
+@media (max-width: 768px) {
+    .fullContainer {
+        gap: 60px;
+        padding: 40px 0;
+        flex-direction: column;
+    }
+
+    .selectBoxList {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        align-items: center;
+    }
+
+    select {
+        width: 300px;
+        font-size: 16px;
+    }
+
+    .simulation-button {
+        width: 80px;
+        padding: 8px;
+    }
+
+    .modal-content {
+        width: 90%;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .fullContainer {
+        gap: 30px;
+        padding: 20px 0;
+    }
+
+    .selectBoxList {
+        gap: 10px;
+    }
+
+    select {
+        width: 300px;
+        font-size: 16px;
+    }
+
+    .simulation-button {
+        width: 70px;
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 10px;
+    }
 }
