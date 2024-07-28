@@ -57,14 +57,14 @@ header {
 .resultImgBox .loadingStat {
   font-family: 'Kadwa', serif;
   position: absolute;
-  font-size: 72px;
+  font-size: 46px;
   color: #A58D78;
   top: -84px;
-  right: -48px;
+  right: -5px;
 }
 
 .resultImgBox .loadingStat span {
-  font-size: 36px;
+  font-size: 32px;
   color: #878988;
 }
 
@@ -145,9 +145,9 @@ header {
   }
 
   .resultImgBox .loadingStat {
-    font-size: 48px;
+    font-size: 40px;
     top: -60px;
-    right: -24px;
+    right: -5px;
   }
 
   .resultImgBox .loadingStat span {

@@ -49,3 +49,33 @@
 }
 
 
+/* 반응형 스타일 추가 */
+@media screen and (max-width: 2000px) {
+    .canvasBox > div {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .canvasBox > div {
+        font-size: 23px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .canvasBox > div {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .canvasBox > div {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .canvasBox > div {
+        font-size: 20px;
+    }
+}
