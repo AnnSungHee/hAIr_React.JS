@@ -105,13 +105,25 @@ const StyleRecommendationPage = () => {
   };
 
   const handleFaceImageUpload = (file) => {
-    setFaceImage(file);
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setImageUrl(event.target.result);  // 이미지 URL을 설정
+      setFaceImage(file);  // 파일 객체를 설정
+    };
+    reader.readAsDataURL(file);
   };
-
+  
   const handleSimulationClick = (imageSrc) => {
+    if (!imageUrl) {
+      console.error("faceImageUrl is missing");
+      return;
+    }
     console.log("Navigating with:", { imageSrc, faceImageUrl: imageUrl });
     navigate('/ai-hairstyle', { state: { imageSrc, faceImageUrl: imageUrl } });
   };
+  
+
+  
 
   const handleSubmit = async () => {
     if (!selectedGender || !selectedLength || !selectedStyle || !faceImage) {
@@ -202,7 +214,7 @@ const StyleRecommendationPage = () => {
 
         {modalOpen && (
           <div className='modal'>
-            <div className='simulationLinkLabel'>시뮬레이션하러 가기</div>
+            <div className='simulationLinkLabel'>시뮬레이션할 이미지 선택</div>
             <div className='modal-content'>
               <span className='close' onClick={closeModal}>&times;</span>
               {responseImages.length > 0 ? (

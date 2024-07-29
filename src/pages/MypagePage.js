@@ -31,7 +31,8 @@ const MypagePage = () => {
         const { member, imageUrls } = response.data;
         const { email, nickName, memberProfile, gender } = member;
         setUserData({ email, nickname: nickName, address: memberProfile.address.city, gender });
-        setImageUrls(imageUrls.map(url => url.replace("file:///C:/Users/user/mainprj/hAIr_Spring_Boot/simulatedImg/", "http://localhost:8080/simulatedImg/")));
+        setImageUrls(imageUrls.map(url => url.replace("file:///E:/hi/dev/hAIr_Spring_Boot/simulatedImg/", "http://localhost:8080/simulatedImg/")));
+        console.log(imageUrls)
         console.log(response.data);
       })
       .catch(error => {
