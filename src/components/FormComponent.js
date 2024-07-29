@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../services/api';
 
 const FormComponent = () => {
   const [data, setData] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/endpoint`, { data })
+    API.post(`/api/endpoint`, { data })
       .then(response => {
         console.log(response.data);
       })

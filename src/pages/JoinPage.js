@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import HeaderComponent from '../components/HeaderComponent';
 import '../assets/styles/pages/JoinPageStyle.css';
 import { useNavigate } from 'react-router-dom';
+import API from '../services/api';
 
 const JoinPage = () => {
     const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ const JoinPage = () => {
 
     const handleEmailBlur = async () => {
         try {
-            const response = await axios.post(`http://localhost:8080/member/check-email/${formData.email}`);
+            const response = await API.post(`/member/check-email/${formData.email}`);
             if (!response.data) {
                 setValidationErrors((prevErrors) => ({
                     ...prevErrors,
@@ -48,7 +48,7 @@ const JoinPage = () => {
 
     const handleNickNameBlur = async () => {
         try {
-            const response = await axios.post(`http://localhost:8080/member/check-nickName/${formData.nickName}`);
+            const response = await API.post(`/member/check-nickName/${formData.nickName}`);
             if (!response.data) {
                 setValidationErrors((prevErrors) => ({
                     ...prevErrors,
@@ -93,7 +93,7 @@ const JoinPage = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8080/member/sign-up', formData, {
+            const response = await API.post('/member/sign-up', formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

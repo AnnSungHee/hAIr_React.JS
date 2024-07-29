@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../assets/styles/components/HeaderComponentStyle.css';
-import axios from 'axios';
+import API from '../services/api';
+
 
 const HeaderComponent = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -10,7 +11,7 @@ const HeaderComponent = () => {
     const token = localStorage.getItem('token');
 
     const handleLogout = async () => {
-        await axios.post('http://localhost:8080/member/logout', {}, {
+        await API.post('/member/logout', {}, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

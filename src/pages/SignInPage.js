@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../services/api';
 import HeaderComponent from '../components/HeaderComponent';
 import '../assets/styles/pages/SignInPageStyle.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ const SignInPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/member/sign-in', formData, {
+            const response = await API.post('/member/sign-in', formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

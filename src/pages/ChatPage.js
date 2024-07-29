@@ -4,7 +4,7 @@ import HeaderComponent from '../components/HeaderComponent';
 import '../assets/styles/pages/ChatPageStyle.css';
 import BotChatComponent from '../components/BotChatComponent';
 import UserChatComponent from '../components/UserChatComponent';
-import axios from 'axios';
+import API from '../services/api';
 
 const ChatPage = () => {
     const [userImage, setUserImage] = useState(null);
@@ -40,7 +40,7 @@ const ChatPage = () => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:8080/chat/face-analysis', formData, {
+            const response = await API.post('/chat/face-analysis', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -75,7 +75,7 @@ const ChatPage = () => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:8080/chat/hairstyle-recommendations', { message });
+            const response = await API.post('/chat/hairstyle-recommendations', { message });
 
             const text = response.data.response;
             const images = response.data.images;

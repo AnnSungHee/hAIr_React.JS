@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent';
 import HairstyleComponent from '../components/HairstyleComponent';
 import '../assets/styles/pages/MypagePage.css';
-import axios from 'axios';
+import API from '../services/api';
 
 const MypagePage = () => {
   const navigate = useNavigate();
@@ -26,12 +26,17 @@ const MypagePage = () => {
       return;
     }
 
-    axios.get(`http://localhost:8080/member/${userId}`)
+    API.get(`/member/${userId}`)
       .then(response => {
         const { member, imageUrls } = response.data;
         const { email, nickName, memberProfile, gender } = member;
         setUserData({ email, nickname: nickName, address: memberProfile.address.city, gender });
-        setImageUrls(imageUrls.map(url => url.replace("file:///E:/hi/dev/hAIr_Spring_Boot/simulatedImg/", "http://localhost:8080/simulatedImg/")));
+        setImageUrls(imageUrls.map(url => {
+          const pathStartIndex = url.indexOf('/simulatedImg');
+          return pathStartIndex !== -1 
+            ? `https://43.201.187.67:8443${url.substring(pathStartIndex)}` 
+            : url;
+        }));
         console.log(imageUrls)
         console.log(response.data);
       })
@@ -55,7 +60,7 @@ const MypagePage = () => {
     // 서버에 삭제 요청
     const imageName = urlToDelete.split('/').pop();
     console.log(imageName)
-    axios.post(`http://localhost:8080/member/${userId}/${imageName}`)
+    API.post(`/member/${userId}/${imageName}`)
       .then(response => {
         console.log('Image deleted:', response.data);
       })

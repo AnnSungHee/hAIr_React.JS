@@ -7,3 +7,5 @@ const API = axios.create({
 });
 
 export const sendData = (data) => API.post('/api/endpoint', data);
+
+export default API; // API 인스턴스를 기본 내보내기(export)로 추가

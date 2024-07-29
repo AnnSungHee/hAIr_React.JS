@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import API from '../services/api';
 import '../assets/styles/pages/AiHairstylePageStyle.css';
 import HeaderComponent from '../components/HeaderComponent';
 import ImageBoxComponent from '../components/ImageBoxComponent';
@@ -99,7 +99,7 @@ const AiHairstylePage = () => {
     formData.append('id', userId); // formData에 id 추가
 
     try {
-      const response = await axios.post('http://localhost:8080/simulation', formData, {
+      const response = await API.post('/simulation', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

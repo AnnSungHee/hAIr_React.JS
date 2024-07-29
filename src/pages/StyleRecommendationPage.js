@@ -4,6 +4,7 @@ import ImageBoxComponent from '../components/ImageBoxComponent';
 import '../assets/styles/pages/StyleRecommendationPageStyle.css';
 import '../assets/styles/components/ImageBoxComponentStyle.css';
 import HeaderComponent from '../components/HeaderComponent';
+import API from '../services/api';
 
 const hairStyles = {
   "여성": {
@@ -140,10 +141,15 @@ const StyleRecommendationPage = () => {
       formData.append('face', blob, 'face.png');
 
       try {
-        const response = await fetch('http://localhost:8080/recommend', {
-          method: 'POST',
-          body: formData
-        });
+        const response = await API.post('/recommend', formData);
+        
+        // 위가 axios로 고친 코드
+
+        // 아래는 잘 돌아가던 fetch코드
+        // await fetch('https://43.201.187.67:8443/recommend', {
+        //   method: 'POST',
+        //   body: formData
+        // });
 
         const result = await response.json();
         console.log('Response:', result);

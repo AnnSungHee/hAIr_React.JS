@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
+import API from '../services/api';
 import HeaderComponent from '../components/HeaderComponent';
 import '../assets/styles/pages/MypageEditPageStyle.css';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,7 @@ const MypageEditPage = () => {
     useEffect(() => {
         const userId = localStorage.getItem("id");
 
-        axios.get(`http://localhost:8080/member/${userId}`)
+        API.get(`/member/${userId}`)
             .then(response => {
                 const data = response.data.member;
                 setFormData({
@@ -54,7 +54,7 @@ const MypageEditPage = () => {
         formPayload.append('gender', formData.gender);
 
         try {
-            const response = await axios.put(`http://localhost:8080/member/${userId}`, formPayload);
+            const response = await API.put(`/member/${userId}`, formPayload);
 
             if (response.status === 200) {
                 console.log('Form submitted successfully');
