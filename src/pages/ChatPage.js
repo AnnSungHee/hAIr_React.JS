@@ -64,6 +64,8 @@ const ChatPage = () => {
     };
 
     const handleSendMessage = async (message) => {
+        if (!message.trim()) return;
+
         setChatHistory(prevChatHistory => [
             ...prevChatHistory,
             { type: 'user', text: message }
@@ -88,6 +90,13 @@ const ChatPage = () => {
             setIsSubmitting(false);
             setIsLoading(false);
             textAreaRef.current.value = '';
+        }
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            handleSendMessage(textAreaRef.current.value);
         }
     };
 
@@ -125,6 +134,7 @@ const ChatPage = () => {
                                 placeholder='메세지를 입력해주세요' 
                                 disabled={isSubmitting} 
                                 ref={textAreaRef}
+                                onKeyDown={handleKeyDown}
                             />
                             
                             <div className='btnArea'>
