@@ -66,6 +66,12 @@ const AiHairstylePage = () => {
       return;
     }
 
+    const userId = localStorage.getItem('id'); // localStorage에서 id를 가져옴
+    if (!userId) {
+      alert("로그인을 해주세요");
+      return;
+    }
+
     setLoading(true);
     setTimeLeft(36);
     setActiveBlocks(0);
@@ -92,6 +98,7 @@ const AiHairstylePage = () => {
     const formData = new FormData();
     formData.append('face', images.face);
     formData.append('hair', images.hair);
+    formData.append('id', userId); // formData에 id 추가
 
     try {
       const response = await axios.post('http://localhost:8080/simulation', formData, {
@@ -141,10 +148,13 @@ const AiHairstylePage = () => {
 
   const handleDownloadClick = () => {
     if (isDownloadable && resultCanvasRef.current) {
-      const link = document.createElement('a');
-      link.href = resultCanvasRef.current.toDataURL('image/png');
-      link.download = 'result.png';
-      link.click();
+      resultCanvasRef.current.toBlob((blob) => {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'result.png';
+        link.click();
+        URL.revokeObjectURL(link.href); // 다운로드 후 URL 객체를 해제합니다.
+      }, 'image/png');
     } else {
       alert("다운로드할 이미지가 없습니다.");
     }

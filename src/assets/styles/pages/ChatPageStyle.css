@@ -142,3 +142,7 @@
         width: 12px;
     }
 }
+
+.loading-indicator>img[src="/spinner.gif"]{
+    width: 200px;
+}
