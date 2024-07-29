@@ -21,7 +21,7 @@ const MypageEditPage = () => {
 
         axios.get(`http://localhost:8080/member/${userId}`)
             .then(response => {
-                const data = response.data;
+                const data = response.data.member;
                 setFormData({
                     email: data.email,
                     username: data.nickName,

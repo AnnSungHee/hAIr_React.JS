@@ -73,7 +73,7 @@ const MypagePage = () => {
             <Link to="/mypage-edit"><img className='profileEditIcon' src="/edit.png" alt="edit" /></Link>
           </div>
           <div className='location'>
-            <img src="/images/pages/MypagePage/location.svg" alt="location" />
+            <img src="/location.svg" alt="location" />
             {userData.address || '주소 정보 없음'}
           </div>
         </div>
