@@ -8,26 +8,39 @@ import ImageBoxComponent from '../components/ImageBoxComponent';
 const AiHairstylePage = () => {
   const [images, setImages] = useState({ face: null, hair: null });
   const resultCanvasRef = useRef(null);
-  const loadingTxtRef = useRef(null); // loadingTxt를 참조하는 ref 추가
+  const loadingTxtRef = useRef(null);
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(36);
   const [activeBlocks, setActiveBlocks] = useState(0);
-  const [activeDiamond, setActiveDiamond] = useState(0); // 추가된 상태 변수
-  const [loadingPercentage, setLoadingPercentage] = useState(0); // 로딩 퍼센티지 추가
+  const [activeDiamond, setActiveDiamond] = useState(0);
+  const [loadingPercentage, setLoadingPercentage] = useState(0);
+  const [resultImageUrl, setResultImageUrl] = useState(null);
+  const [isDownloadable, setIsDownloadable] = useState(false);
 
   useEffect(() => {
-    if (location.state && location.state.imageSrc) {
-      const base64String = location.state.imageSrc.split(',')[1];
-      const binaryString = window.atob(base64String);
-      const len = binaryString.length;
-      const bytes = new Uint8Array(len);
-      for (let i = 0; i < len; i++) {
-        bytes[i] = binaryString.charCodeAt(i);
+    if (location.state && location.state.imageSrc && location.state.faceImageUrl) {
+      const base64StringHair = location.state.imageSrc.split(',')[1];
+      const binaryStringHair = window.atob(base64StringHair);
+      const lenHair = binaryStringHair.length;
+      const bytesHair = new Uint8Array(lenHair);
+      for (let i = 0; i < lenHair; i++) {
+        bytesHair[i] = binaryStringHair.charCodeAt(i);
       }
-      const blob = new Blob([bytes], { type: 'image/png' });
-      const file = new File([blob], "hair.png", { type: "image/png" });
-      setImages(prevImages => ({ ...prevImages, hair: file }));
+      const blobHair = new Blob([bytesHair], { type: 'image/png' });
+      const fileHair = new File([blobHair], "hair.png", { type: "image/png" });
+
+      const base64StringFace = location.state.faceImageUrl.split(',')[1];
+      const binaryStringFace = window.atob(base64StringFace);
+      const lenFace = binaryStringFace.length;
+      const bytesFace = new Uint8Array(lenFace);
+      for (let i = 0; i < lenFace; i++) {
+        bytesFace[i] = binaryStringFace.charCodeAt(i);
+      }
+      const blobFace = new Blob([bytesFace], { type: 'image/png' });
+      const fileFace = new File([blobFace], "face.png", { type: "image/png" });
+
+      setImages({ face: fileFace, hair: fileHair });
     }
   }, [location.state]);
 
@@ -43,12 +56,6 @@ const AiHairstylePage = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    if (images.face && images.hair) {
-      applyAI(images);
-    }
-  }, [images]);
-
   const handleImageUpload = (type, file) => {
     setImages((prevImages) => ({ ...prevImages, [type]: file }));
   };
@@ -63,9 +70,10 @@ const AiHairstylePage = () => {
     setTimeLeft(36);
     setActiveBlocks(0);
     setLoadingPercentage(0);
+    setIsDownloadable(false);
 
     if (loadingTxtRef.current) {
-      loadingTxtRef.current.style.display = 'block'; // 로딩 시작 시 loadingTxt 표시
+      loadingTxtRef.current.style.display = 'block';
     }
 
     const countdown = setInterval(() => {
@@ -101,24 +109,44 @@ const AiHairstylePage = () => {
 
         resultCanvasRef.current.style.display = 'block';
         setLoading(false);
-        setLoadingPercentage(100); // 로딩 완료 시 100%로 설정
-        clearInterval(countdown); // 성공 시 countdown 클리어
+        setLoadingPercentage(100);
+        setIsDownloadable(true);
+        clearInterval(countdown);
 
         if (loadingTxtRef.current) {
-          loadingTxtRef.current.style.display = 'none'; // 로딩 완료 시 loadingTxt 숨김
+          loadingTxtRef.current.style.display = 'none';
         }
+
+        const url = URL.createObjectURL(response.data);
+        setResultImageUrl(url);
       };
       img.src = URL.createObjectURL(response.data);
     } catch (error) {
       console.error("AI 적용 실패:", error);
       alert(`AI 적용 실패: ${error.message}`);
       setLoading(false);
-      setLoadingPercentage(0); // 실패 시 0으로 초기화
-      clearInterval(countdown); // 실패 시 countdown 클리어
+      setLoadingPercentage(0);
+      setIsDownloadable(false);
+      clearInterval(countdown);
 
       if (loadingTxtRef.current) {
-        loadingTxtRef.current.style.display = 'none'; // 실패 시 loadingTxt 숨김
+        loadingTxtRef.current.style.display = 'none';
       }
+    }
+  };
+
+  const handleStartClick = () => {
+    applyAI(images);
+  };
+
+  const handleDownloadClick = () => {
+    if (isDownloadable && resultCanvasRef.current) {
+      const link = document.createElement('a');
+      link.href = resultCanvasRef.current.toDataURL('image/png');
+      link.download = 'result.png';
+      link.click();
+    } else {
+      alert("다운로드할 이미지가 없습니다.");
     }
   };
 
@@ -129,20 +157,26 @@ const AiHairstylePage = () => {
         <div className='inputOutputBox'>
           <span className='diamondImgContainer'>
             <div className='imgBoxContainer'>
-              <ImageBoxComponent label="얼굴" onImageUpload={(file) => handleImageUpload('face', file)} />
+              <ImageBoxComponent label="얼굴" onImageUpload={(file) => handleImageUpload('face', file)} imageUrl={images.face ? URL.createObjectURL(images.face) : null} />
               <ImageBoxComponent label="헤어" onImageUpload={(file) => handleImageUpload('hair', file)} imageUrl={images.hair ? URL.createObjectURL(images.hair) : null} />
             </div>
 
-            <div className='diamonds'>
+            <div className='diamonds' style={{ display: 'none' }}>
               {[...Array(4)].map((_, index) => (
                 <div key={index} className={index === activeDiamond ? 'glitteringDaimond' : ''}></div>
               ))}
             </div>
+            <div className='startBtn' onClick={handleStartClick}>Start</div>
           </span>
 
           <div className='resultImgBox'>
             <canvas ref={resultCanvasRef} width={500} height={500} style={{ display: 'none' }}></canvas>
-            <img src="/download.png" alt="" />
+            <img 
+              src="/download.png" 
+              alt="다운로드 아이콘" 
+              onClick={handleDownloadClick} 
+              style={{ cursor: isDownloadable ? 'pointer' : 'not-allowed', opacity: isDownloadable ? 1 : 0.5 }} 
+            />
             <div className='loadingStat'>{loadingPercentage.toFixed(0)}/<span>100</span></div>
             <div className='loadingTxt' ref={loadingTxtRef} style={{ display: 'none' }}>Loading..</div>
           </div>

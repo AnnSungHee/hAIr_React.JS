@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ImageBoxComponent from '../components/ImageBoxComponent';
 import '../assets/styles/pages/StyleRecommendationPageStyle.css';
@@ -62,17 +62,12 @@ const StyleRecommendationPage = () => {
   const [genderTextColor, setGenderTextColor] = useState('#A58D78');
   const [lengthTextColor, setLengthTextColor] = useState('#A58D78');
   const [styleTextColor, setStyleTextColor] = useState('#A58D78');
-  const [imageUrl, setImageUrl] = useState(''); // 추가된 state
-  const [modalOpen, setModalOpen] = useState(false); // 모달 열림 상태
-  const [responseImages, setResponseImages] = useState([]); // 응답 이미지들
+  const [imageUrl, setImageUrl] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [responseImages, setResponseImages] = useState([]);
+  const [faceImage, setFaceImage] = useState(null);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (selectedGender && selectedLength && selectedStyle && imageUrl) {
-      handleSubmit();
-    }
-  }, [selectedGender, selectedLength, selectedStyle, imageUrl]);
 
   const handleGenderChange = (event) => {
     setSelectedGender(event.target.value);
@@ -109,11 +104,20 @@ const StyleRecommendationPage = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleFaceImageUpload = (file) => {
+    setFaceImage(file);
+  };
+
   const handleSimulationClick = (imageSrc) => {
-    navigate('/ai-hairstyle', { state: { imageSrc } });
+    navigate('/ai-hairstyle', { state: { imageSrc, faceImageUrl: imageUrl } });
   };
 
   const handleSubmit = async () => {
+    if (!selectedGender || !selectedLength || !selectedStyle || !faceImage) {
+      alert("모든 옵션을 선택하고 이미지를 업로드해주세요.");
+      return;
+    }
+
     const canvas = document.querySelector('.ImageBoxComponentBox canvas');
     canvas.toBlob(async (blob) => {
       const formData = new FormData();
@@ -152,7 +156,7 @@ const StyleRecommendationPage = () => {
       <div className='fullContainer'>
         <div className='imgSelectBoxContainer'>
           <div className='ImageBoxComponentBox'>
-            <ImageBoxComponent onImageUpload={handleImageUpload} imageUrl={imageUrl} />
+            <ImageBoxComponent onImageUpload={handleFaceImageUpload} imageUrl={imageUrl} />
           </div>
           <div className='selectBoxList'>
             <select 
@@ -192,6 +196,7 @@ const StyleRecommendationPage = () => {
               </select>
             )}
           </div>
+          <div className='startBtn' onClick={handleSubmit}>start</div>
         </div>
 
         {modalOpen && (

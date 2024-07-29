@@ -9,7 +9,7 @@ import axios from 'axios';
 const ChatPage = () => {
     const [userImage, setUserImage] = useState(null);
     const [chatHistory, setChatHistory] = useState([
-        { type: 'bot', text: 'hAIr 상담소에 오신 것을 환영합니다. 헤어스타일 상담을 위해 고객님의 사진을 올려주세요.' }
+        { type: 'bot', text: 'hAIr 상담소에 오신 것을 환영합니다. 원하는 느낌을 말씀해주시면 그에 맞는 헤어스타일을 추천해드리겠습니다.' }
     ]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -126,8 +126,8 @@ const ChatPage = () => {
                     </div>
                     <div className='inputBox'>
                         <div className='inputWrapper'>
-                            <label htmlFor="file-upload" className="fileUploadLabel"><img src="/clip.png" alt="" /></label>
-                            <input id="file-upload" type="file" onChange={handleImageUpload} disabled={isSubmitting} style={{ display: 'none' }} />
+                            {/* <label htmlFor="file-upload" className="fileUploadLabel"><img src="/clip.png" alt="" /></label>
+                            <input id="file-upload" type="file" onChange={handleImageUpload} disabled={isSubmitting} style={{ display: 'none' }} /> */}
                             
                             <textarea 
                                 className='textArea' 
