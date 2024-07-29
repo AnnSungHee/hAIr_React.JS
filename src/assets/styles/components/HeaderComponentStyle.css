@@ -3,6 +3,7 @@
     position: sticky;
     top: 0;
     z-index: 1000;
+    background-color: whitesmoke;
 }
 
 .headerContent {
@@ -18,7 +19,7 @@
 
 .linkList {
     color: #4A4C4C;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     display: flex;
     gap: 44px;
@@ -82,6 +83,21 @@
     transition: 0.4s;
 }
 
+/* 반응형 글꼴 크기 설정 */
+@media screen and (max-width: 1200px) {
+    .linkList {
+        font-size: 20px; /* 글꼴 크기 줄임 */
+        gap: 30px; /* 간격 조정 */
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .linkList {
+        font-size: 18px; /* 글꼴 크기 더 줄임 */
+        gap: 20px; /* 간격 조정 */
+    }
+}
+
 @media screen and (max-width: 768px) {
     .headerContent {
         padding: 0.5rem 1.5rem;
@@ -97,5 +113,11 @@
 
     .mobileMenu {
         display: block;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .mobileMenu {
+        font-size: 16px; /* 모바일 메뉴 글꼴 크기 더 줄임 */
     }
 }
