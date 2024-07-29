@@ -109,6 +109,7 @@ const StyleRecommendationPage = () => {
   };
 
   const handleSimulationClick = (imageSrc) => {
+    console.log("Navigating with:", { imageSrc, faceImageUrl: imageUrl });
     navigate('/ai-hairstyle', { state: { imageSrc, faceImageUrl: imageUrl } });
   };
 
@@ -201,13 +202,14 @@ const StyleRecommendationPage = () => {
 
         {modalOpen && (
           <div className='modal'>
+            <div className='simulationLinkLabel'>시뮬레이션하러 가기</div>
             <div className='modal-content'>
               <span className='close' onClick={closeModal}>&times;</span>
               {responseImages.length > 0 ? (
                 responseImages.map((image, index) => (
                   <div key={index}>
                     <img src={`data:image/png;base64,${image}`} alt={`Recommendation ${index + 1}`} />
-                    <div className="simulation-button" onClick={() => handleSimulationClick(`data:image/png;base64,${image}`)}>시뮬레이션</div>
+                    <div className="simulation-button" onClick={() => handleSimulationClick(`data:image/png;base64,${image}`)}>선택</div>
                   </div>
                 ))
               ) : (

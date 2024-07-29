@@ -19,28 +19,26 @@ const AiHairstylePage = () => {
   const [isDownloadable, setIsDownloadable] = useState(false);
 
   useEffect(() => {
+    console.log("Received state:", location.state);
     if (location.state && location.state.imageSrc && location.state.faceImageUrl) {
-      const base64StringHair = location.state.imageSrc.split(',')[1];
-      const binaryStringHair = window.atob(base64StringHair);
-      const lenHair = binaryStringHair.length;
-      const bytesHair = new Uint8Array(lenHair);
-      for (let i = 0; i < lenHair; i++) {
-        bytesHair[i] = binaryStringHair.charCodeAt(i);
-      }
-      const blobHair = new Blob([bytesHair], { type: 'image/png' });
-      const fileHair = new File([blobHair], "hair.png", { type: "image/png" });
+      const base64ToBlob = (base64, type = 'image/png') => {
+        const byteString = atob(base64.split(',')[1]);
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ab], { type });
+      };
 
-      const base64StringFace = location.state.faceImageUrl.split(',')[1];
-      const binaryStringFace = window.atob(base64StringFace);
-      const lenFace = binaryStringFace.length;
-      const bytesFace = new Uint8Array(lenFace);
-      for (let i = 0; i < lenFace; i++) {
-        bytesFace[i] = binaryStringFace.charCodeAt(i);
-      }
-      const blobFace = new Blob([bytesFace], { type: 'image/png' });
-      const fileFace = new File([blobFace], "face.png", { type: "image/png" });
+      const hairBlob = base64ToBlob(location.state.imageSrc);
+      const faceBlob = base64ToBlob(location.state.faceImageUrl);
 
-      setImages({ face: fileFace, hair: fileHair });
+      const hairFile = new File([hairBlob], "hair.png", { type: "image/png" });
+      const faceFile = new File([faceBlob], "face.png", { type: "image/png" });
+
+      console.log("Created Files:", { faceFile, hairFile });
+      setImages({ face: faceFile, hair: hairFile });
     }
   }, [location.state]);
 

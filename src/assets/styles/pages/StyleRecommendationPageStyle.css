@@ -50,6 +50,10 @@ select {
 
 .modal {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     position: fixed;
     z-index: 1;
     left: 0;
@@ -60,6 +64,15 @@ select {
     background-color: rgba(0, 0, 0, 0.4);
     justify-content: center;
     align-items: center;
+
+    &>.simulationLinkLabel{
+        font-size: 20px;
+        color: #191919;
+        background-color: #ffffff;
+        border-radius: 20px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 }
 
 .modal-content {

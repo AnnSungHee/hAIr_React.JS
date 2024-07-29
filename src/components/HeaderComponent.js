@@ -48,6 +48,14 @@ const HeaderComponent = () => {
                     </li>
                     <li>
                         <Link 
+                            to="/style-recommendation" 
+                            className={isActive('/style-recommendation') ? 'selectedLink' : ''}
+                        >
+                            Recommendation
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
                             to="/ai-hairstyle" 
                             className={isActive('/ai-hairstyle') ? 'selectedLink' : ''}
                         >
@@ -60,14 +68,6 @@ const HeaderComponent = () => {
                             className={isActive('/mypage') ? 'selectedLink' : ''}
                         >
                             Mypage
-                        </Link>
-                    </li>
-                    <li>
-                        <Link 
-                            to="/style-recommendation" 
-                            className={isActive('/style-recommendation') ? 'selectedLink' : ''}
-                        >
-                            Recommendation
                         </Link>
                     </li>
                     {token ? (
