@@ -35,7 +35,7 @@ const MypagePage = () => {
           const pathStartIndex = url.indexOf('/simulatedImg');
           return pathStartIndex !== -1 
             // ? `https://43.201.187.67:8443${url.substring(pathStartIndex)}` 
-            ? `https://localhost:8080${url.substring(pathStartIndex)}` 
+            ? `http://localhost:8080${url.substring(pathStartIndex)}` 
             : url;
         }));
         console.log(imageUrls)

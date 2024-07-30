@@ -144,15 +144,15 @@ const StyleRecommendationPage = () => {
       try {
         setIsVisible(prevState => !prevState);
         setModalOpen(true); // 모달 열기
-        const response = await API.post('/recommend', formData);
+        // const response = await API.post('/recommend', formData);
         
         // 위가 axios로 고친 코드
 
         // 아래는 잘 돌아가던 fetch코드
-        // await fetch('https://43.201.187.67:8443/recommend', {
-        //   method: 'POST',
-        //   body: formData
-        // });
+        await fetch('https://localhost:8080/recommend', {
+          method: 'POST',
+          body: formData
+        });
 
         const result = await response.json();
         console.log('Response:', result);
