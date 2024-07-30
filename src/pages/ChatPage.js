@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent';
 import '../assets/styles/pages/ChatPageStyle.css';
 import BotChatComponent from '../components/BotChatComponent';
@@ -7,13 +6,12 @@ import UserChatComponent from '../components/UserChatComponent';
 import API from '../services/api';
 
 const ChatPage = () => {
-    const [userImage, setUserImage] = useState(null);
+    // const [userImage, setUserImage] = useState(null);
     const [chatHistory, setChatHistory] = useState([
         { type: 'bot', text: 'hAIr 상담소에 오신 것을 환영합니다. 원하는 느낌을 말씀해주시면 그에 맞는 헤어스타일을 추천해드리겠습니다.' }
     ]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
     const textAreaRef = useRef(null);
     const chatListRef = useRef(null);
     const lastMessageRef = useRef(null);
@@ -24,44 +22,44 @@ const ChatPage = () => {
         }
     }, [chatHistory, isLoading]);
 
-    const handleImageUpload = async (e) => {
-        const file = e.target.files[0];
-        setUserImage(file);
+    // const handleImageUpload = async (e) => {
+    //     const file = e.target.files[0];
+    //     setUserImage(file);
 
-        const formData = new FormData();
-        formData.append('image', file);
+    //     const formData = new FormData();
+    //     formData.append('image', file);
 
-        setChatHistory(prevChatHistory => [
-            ...prevChatHistory,
-            { type: 'user', image: file }
-        ]);
+    //     setChatHistory(prevChatHistory => [
+    //         ...prevChatHistory,
+    //         { type: 'user', image: file }
+    //     ]);
 
-        setIsSubmitting(true);
-        setIsLoading(true);
+    //     setIsSubmitting(true);
+    //     setIsLoading(true);
 
-        try {
-            const response = await API.post('/chat/face-analysis', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+    //     try {
+    //         const response = await API.post('/chat/face-analysis', formData, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //             },
+    //         });
 
-            setChatHistory(prevChatHistory => [
-                ...prevChatHistory,
-                { type: 'bot', text: '고객님의 얼굴을 분석완료하였습니다. 원하시는 헤어스타일이 있나요?' }
-            ]);
-        } catch (error) {
-            console.error('Error uploading image:', error);
+    //         setChatHistory(prevChatHistory => [
+    //             ...prevChatHistory,
+    //             { type: 'bot', text: '고객님의 얼굴을 분석완료하였습니다. 원하시는 헤어스타일이 있나요?' }
+    //         ]);
+    //     } catch (error) {
+    //         console.error('Error uploading image:', error);
 
-            setChatHistory(prevChatHistory => [
-                ...prevChatHistory,
-                { type: 'bot', text: '사진 업로드에 실패했습니다. 다시 시도해주세요.' }
-            ]);
-        } finally {
-            setIsSubmitting(false);
-            setIsLoading(false);
-        }
-    };
+    //         setChatHistory(prevChatHistory => [
+    //             ...prevChatHistory,
+    //             { type: 'bot', text: '사진 업로드에 실패했습니다. 다시 시도해주세요.' }
+    //         ]);
+    //     } finally {
+    //         setIsSubmitting(false);
+    //         setIsLoading(false);
+    //     }
+    // };
 
     const handleSendMessage = async (message) => {
         if (!message.trim()) return;
@@ -100,9 +98,6 @@ const ChatPage = () => {
         }
     };
 
-    const handleImageClick = (imageSrc, imageFile) => {
-        navigate('/ai-hairstyle', { state: { imageSrc, imageFile } });
-    };
 
     return (
         <>
@@ -113,7 +108,7 @@ const ChatPage = () => {
                         {chatHistory.map((chat, index) => (
                             <div key={index} ref={index === chatHistory.length - 1 ? lastMessageRef : null}>
                                 {chat.type === 'bot' ? 
-                                    <BotChatComponent key={index} text={chat.text} images={chat.images} onImageClick={(imageSrc) => handleImageClick(imageSrc, chat.image)} /> : 
+                                    <BotChatComponent key={index} text={chat.text} /> : 
                                     <UserChatComponent key={index} text={chat.text} image={chat.image} />
                                 }
                             </div>

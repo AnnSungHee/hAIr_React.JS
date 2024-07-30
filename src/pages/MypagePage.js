@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent';
 import HairstyleComponent from '../components/HairstyleComponent';
-import '../assets/styles/pages/MypagePage.css';
+import '../assets/styles/pages/MypagePageStyle.css';
 import API from '../services/api';
 
 const MypagePage = () => {
@@ -34,7 +34,8 @@ const MypagePage = () => {
         setImageUrls(imageUrls.map(url => {
           const pathStartIndex = url.indexOf('/simulatedImg');
           return pathStartIndex !== -1 
-            ? `https://43.201.187.67:8443${url.substring(pathStartIndex)}` 
+            // ? `https://43.201.187.67:8443${url.substring(pathStartIndex)}` 
+            ? `http://localhost:8080${url.substring(pathStartIndex)}` 
             : url;
         }));
         console.log(imageUrls)

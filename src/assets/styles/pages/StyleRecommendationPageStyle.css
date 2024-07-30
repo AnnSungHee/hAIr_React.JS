@@ -216,3 +216,12 @@ select {
     color: #ffffff;
     background-color: #A58D78;
 }
+
+
+.styleRecommendationPageModalLoadingSpinner{
+    margin: auto;
+
+    &>img{
+        width: 250px;
+    }
+}
