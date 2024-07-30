@@ -223,7 +223,7 @@ const StyleRecommendationPage = () => {
 
         {modalOpen && (
           <div className='modal'>
-            <div className='simulationLinkLabel'>시뮬레이션할 이미지 선택</div>
+            <div className='simulationLinkLabel' style={{ display: isVisible ? 'none' : 'inline-block' }}>시뮬레이션할 이미지 선택</div>
             <div className='styleRecommendationPageModalLoadingSpinner' style={{ display: isVisible ? 'inline-block' : 'none' }}><img src="loading-spinner.gif" alt="" /></div>
             <div className='modal-content'>
               <span className='close' onClick={closeModal}>&times;</span>
