@@ -1,4 +1,4 @@
-# hAIr (Hair Artificial intelligence Individual Recommend) - React Project
+# hAIr (Hair Artificial intelligence Individual Recommend) - React Project 
 
 ## 저장소 경로 설명   
 ```
