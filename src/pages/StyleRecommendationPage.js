@@ -149,7 +149,7 @@ const StyleRecommendationPage = () => {
         // 위가 axios로 고친 코드
 
         // 아래는 잘 돌아가던 fetch코드
-        const response = await fetch('https://localhost:8080/recommend', {
+        const response = await fetch('http://localhost:8080/recommend', {
           method: 'POST',
           body: formData
         });
