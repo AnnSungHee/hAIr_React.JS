@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ImageModalComponent from './ImageModalComponent';
 import '../assets/styles/components/BotChatComponentStyle.css';
 
 const BotChatComponent = ({ text, images, onImageClick }) => {
@@ -11,10 +10,6 @@ const BotChatComponent = ({ text, images, onImageClick }) => {
     setIsModalOpen(true);
   };
 
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-    setSelectedImage(null);
-  };
 
   return (
     <div className='botChatBox'>
@@ -32,10 +27,6 @@ const BotChatComponent = ({ text, images, onImageClick }) => {
           </div>
         )}
       </span>
-
-      <ImageModalComponent isOpen={isModalOpen} onClose={handleModalClose}>
-        {selectedImage && <img src={selectedImage} alt="Selected hairstyle" className="modal-image" />}
-      </ImageModalComponent>
     </div>
   );
 };

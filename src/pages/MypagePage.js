@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent';
 import HairstyleComponent from '../components/HairstyleComponent';
-import '../assets/styles/pages/MypagePage.css';
+import '../assets/styles/pages/MypagePageStyle.css';
 import API from '../services/api';
 
 const MypagePage = () => {
