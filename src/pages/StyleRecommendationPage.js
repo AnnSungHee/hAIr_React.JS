@@ -67,6 +67,7 @@ const StyleRecommendationPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [responseImages, setResponseImages] = useState([]);
   const [faceImage, setFaceImage] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -141,6 +142,8 @@ const StyleRecommendationPage = () => {
       formData.append('face', blob, 'face.png');
 
       try {
+        setIsVisible(prevState => !prevState);
+        setModalOpen(true); // 모달 열기
         const response = await API.post('/recommend', formData);
         
         // 위가 axios로 고친 코드
@@ -153,9 +156,9 @@ const StyleRecommendationPage = () => {
 
         const result = await response.json();
         console.log('Response:', result);
+        setIsVisible(prevState => !prevState);
         if (result.length > 0) {
           setResponseImages(result); // 이미지 배열을 상태에 저장
-          setModalOpen(true); // 모달 열기
         } else {
           console.error('No images returned from the server.');
         }
@@ -221,6 +224,7 @@ const StyleRecommendationPage = () => {
         {modalOpen && (
           <div className='modal'>
             <div className='simulationLinkLabel'>시뮬레이션할 이미지 선택</div>
+            <div className='styleRecommendationPageModalLoadingSpinner' style={{ display: isVisible ? 'inline-block' : 'none' }}><img src="loading-spinner.gif" alt="" /></div>
             <div className='modal-content'>
               <span className='close' onClick={closeModal}>&times;</span>
               {responseImages.length > 0 ? (
